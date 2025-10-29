@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Bahi-an Portfolio</title>  
+
+  <style>
+    /* ===== GENERAL STYLES ===== */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: linear-gradient(135deg, #f8bbd0 0%, #fce4ec 100%);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1, h2 {
+      color: #ad1457;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(90deg, #f06292, #ec407a);
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 5px 0;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 8px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-radius: 25px;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: white;
+      color: #ad1457;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      width: 90%;
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    hr {
+      border: 1px solid #ad1457;
+      width: 60%;
+      margin: 20px auto;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 40px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #e91e63;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== MEDIA GALLERY ===== */
+    .photo-item, .video-item {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .photo-item img, .video-item video {
+      width: 280px;
+      height: 190px;
+      border-radius: 12px;
+      border: 3px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .photo-item img:hover, .video-item video:hover {
+      transform: scale(1.05);
+    }
+
+    .photo-item p, .video-item p {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ad1457;
+      margin-top: 10px;
+    }
+
+    /* ===== CONTACT FORM ===== */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #ad1457;
+      align-self: flex-start;
+      margin-left: 10%;
+    }
+
+    textarea, input {
+      width: 80%;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-size: 14px;
+      resize: none;
+      transition: 0.3s;
+      font-family: "Poppins", sans-serif;
+    }
+
+    textarea:focus, input:focus {
+      border-color: #e91e63;
+      box-shadow: 0 0 8px rgba(233, 30, 99, 0.3);
+      outline: none;
+    }
+
+    button {
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 30px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #ad1457;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      text-align: center;
+      color: #666;
+      padding: 20px;
+      font-size: 14px;
+      background: #f8bbd0;
+      border-top: 2px solid #f06292;
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 24px;
+      }
+      nav {
+        gap: 15px;
+      }
+      section {
+        padding: 20px;
+      }
+      .photo-item img, .video-item video {
+        width: 90%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><b><i>Bahi-an Portfolio</i></b></h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="home">
+    <h2>Welcome!</h2>
+    <p style="text-align:center;">
+      Welcome to my personal portfolio website.<br>
+      Explore to know more about me, my skills, and my work!
+    </p>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I’m an Information Technology student with a passion for coding, problem-solving, and learning about emerging technologies. I’m currently building my skills in software development, web design, and cybersecurity. I enjoy turning ideas into real-world applications and exploring how technology can make everyday life better. My goal is to grow as an IT professional and contribute to innovative tech projects that make an impact.  </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML, CSS, and Basic JavaScript</li>
+      <li>UI/UX Design using Figma and Canva</li>
+      <li>Photo and Video Editing</li>
+      <li>Team Collaboration and Communication</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects & Outputs</h2>
+    <ul>
+      <li><a href="https://www.canva.com/design/DAGvxBzvQtQ/4s8VArc0jbtKNpFQzud_eQ/edit?utm_content=DAGvxBzvQtQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">My Personal Website in Canva</a></li>
+      <li><a href="https://www.figma.com/proto/EFpFv6BXGQiEexLU8lTreA/Portfolio?node-id=0-1&t=2OPX7AHWazTv1gjR-1" target="_blank">My Personal Website in Figma</a></li>
+      <li><a href="https://www.figma.com/proto/pe9XXHKs5KHZAAYDsCTJ9P/Untitled?node-id=0-1&t=UUU662vmuT5UBWaN-1" target="_blank">Figma E-commerce Design</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>The tool that I use </h2>
+    <div class="photo-item">
+      <img src="Ln.jpg" alt="Adobe Premiere">
+      <p>Adobe Premiere</p>
+    </div>
+    <div class="photo-item">
+      <img src="Cata.jpg" alt="Figma">
+      <p>Figma</p>
+    </div>
+    <div class="photo-item">
+      <img src="Ps.webp" alt="Adobe Photoshop">
+      <p>Adobe Photoshop</p>
+    </div>
+  </section>
+
+  <section>
+    <h2> Videos</h2>
+    <div class="video-item">
+      <video src="bahi-an (1).mp4" controls></video>
+      <p>With My sister</p>
+    <div class="video-item">
+      <video src="bahian (1).mp4" controls></video>
+      <p>With My Mama</p>
+    </div>
+    <div class="video-item">
+      <video src="Bahian.mp4" controls></video>
+      <p>With Fam</p>
+    
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <label for="firstname">First Name:</label>
+      <input type="text" id="firstname" placeholder="Enter your first name">
+
+      <label for="lastname">Last Name:</label>
+      <input type="text" id="lastname" placeholder="Enter your last name">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Enter your email">
+
+      <label for="comments">Message:</label>
+      <textarea id="comments" rows="5" placeholder="Enter your message here..."></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 <b>Bahi-an Portfolio</b> | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
