@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,30 +116,97 @@
       text-decoration: underline;
     }
 
-    /* ===== MEDIA GALLERY ===== */
-    .photo-item, .video-item {
-      text-align: center;
-      margin-bottom: 25px;
+    /* ===== PROFILE PICTURE ===== */
+    .profile-pic {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
     }
 
-    .photo-item img, .video-item video {
+    .profile-pic img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #f06292;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-pic img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(173, 20, 87, 0.4);
+    }
+
+    /* ===== PROJECTS SECTION ===== */
+    .project-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .project-item {
+      text-align: center;
+      background-color: #fce4ec;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(173, 20, 87, 0.3);
+    }
+
+    .project-item img {
       width: 280px;
       height: 190px;
       border-radius: 12px;
       border: 3px solid white;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      object-fit: cover;
+    }
+
+    .project-item p {
+      font-size: 16px;
+      font-weight: bold;
+      color: #ad1457;
+      margin-top: 10px;
+    }
+
+    /* ===== VIDEO TUTORIALS ===== */
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .video-item {
+      text-align: center; /* ✅ Centers both video and caption */
+    }
+
+    .video-item iframe {
+      width: 320px;
+      height: 180px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: transform 0.3s ease;
     }
 
-    .photo-item img:hover, .video-item video:hover {
+    .video-item iframe:hover {
       transform: scale(1.05);
     }
 
-    .photo-item p, .video-item p {
+    .video-item p {
       font-size: 18px;
       font-weight: bold;
       color: #ad1457;
       margin-top: 10px;
+      text-align: center; /* ✅ Ensures text stays centered */
     }
 
     /* ===== CONTACT FORM ===== */
@@ -211,9 +279,13 @@
       section {
         padding: 20px;
       }
-      .photo-item img, .video-item video {
-        width: 90%;
+      .photo-item img, .video-item iframe, .project-item img {
+        width: 100%;
         height: auto;
+      }
+      .video-grid, .project-grid {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -221,78 +293,81 @@
 
 <body>
   <header>
-    <h1><b><i>Bahi-an Portfolio</i></b></h1>
     <nav>
+      <a href="#home">Home</a>
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#Tutorials">Tutorials</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <section id="home">
-    <h2>Welcome!</h2>
+    <div class="profile-pic">
+      <img src="Cn.png" alt="Profile Picture">
+    </div>
+    <h2>Welcome to My Portfolio!</h2>
     <p style="text-align:center;">
-      Welcome to my personal portfolio website.<br>
-      Explore to know more about me, my skills, and my work!
+      Crafting innovative solutions through design, code, and creativity.  
+      Welcome to a space where ideas turn into experience —  
+      a journey of learning, building, and growing.
     </p>
   </section>
 
   <section id="about">
     <h2>About Me</h2>
     <p>
-      I’m an Information Technology student with a passion for coding, problem-solving, and learning about emerging technologies. I’m currently building my skills in software development, web design, and cybersecurity. I enjoy turning ideas into real-world applications and exploring how technology can make everyday life better. My goal is to grow as an IT professional and contribute to innovative tech projects that make an impact.  </p>
+      I’m an Information Technology student with a passion for coding, problem-solving, and learning about emerging technologies.  
+      I’m currently building my skills in software development, web design, and cybersecurity.  
+      My goal is to grow as an IT professional and contribute to innovative tech projects that make an impact.
+    </p>
   </section>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>HTML, CSS, and Basic JavaScript</li>
-      <li>UI/UX Design using Figma and Canva</li>
-      <li>Photo and Video Editing</li>
-      <li>Team Collaboration and Communication</li>
-    </ul>
-  </section>
-
+  <!-- ===== PROJECTS SECTION ===== -->
   <section id="projects">
-    <h2>Projects & Outputs</h2>
-    <ul>
-      <li><a href="https://www.canva.com/design/DAGvxBzvQtQ/4s8VArc0jbtKNpFQzud_eQ/edit?utm_content=DAGvxBzvQtQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">My Personal Website in Canva</a></li>
-      <li><a href="https://www.figma.com/proto/EFpFv6BXGQiEexLU8lTreA/Portfolio?node-id=0-1&t=2OPX7AHWazTv1gjR-1" target="_blank">My Personal Website in Figma</a></li>
-      <li><a href="https://www.figma.com/proto/pe9XXHKs5KHZAAYDsCTJ9P/Untitled?node-id=0-1&t=UUU662vmuT5UBWaN-1" target="_blank">Figma E-commerce Design</a></li>
-    </ul>
-  </section>
+    <h2>Projects</h2>
 
-  <section>
-    <h2>The tool that I use </h2>
-    <div class="photo-item">
-      <img src="Ln.jpg" alt="Adobe Premiere">
-      <p>Adobe Premiere</p>
-    </div>
-    <div class="photo-item">
-      <img src="Cata.jpg" alt="Figma">
-      <p>Figma</p>
-    </div>
-    <div class="photo-item">
-      <img src="Ps.webp" alt="Adobe Photoshop">
-      <p>Adobe Photoshop</p>
+    <div class="project-grid">
+      <div class="project-item">
+        <img src="Fn.jpg" alt="Project 1">
+        <p> Editing banner using Adobe Photoshop</p>
+      </div>
+
+      <div class="project-item">
+        <img src="Cn.jpg" alt="Project 2">
+        <p>Creating Portfolio using Canva</p>
+      </div>
+
+      <div class="project-item">
+        <img src="Rn.jpg" alt="Project 3">
+        <p> Editing music video using Adobe Premiere</p>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2> Videos</h2>
-    <div class="video-item">
-      <video src="bahi-an (1).mp4" controls></video>
-      <p>With My sister</p>
-    <div class="video-item">
-      <video src="bahian (1).mp4" controls></video>
-      <p>With My Mama</p>
-    </div>
-    <div class="video-item">
-      <video src="Bahian.mp4" controls></video>
-      <p>With Fam</p>
-    
+  <!-- ===== TUTORIALS SECTION ===== -->
+  <section id="Tutorials">
+    <h2>Tutorials</h2>
 
+    <div class="video-grid">
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/jQ1sfKIl50E" title="Figma Tutorial" frameborder="0" allowfullscreen></iframe>
+        <p>Figma Tutorial</p>
+      </div>
+
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/jzWxBuvwuwQ" title="Canva Tutorial" frameborder="0" allowfullscreen></iframe>
+        <p>Canva Tutorial</p>
+      </div>
+
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/qwNbjGyhZ48" title="Photoshop Tutorial" frameborder="0" allowfullscreen></iframe>
+        <p>Photoshop Tutorial</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
   <section id="contact">
     <h2>Contact Me</h2>
     <form>
@@ -315,5 +390,5 @@
   <footer>
     <p>© 2025 <b>Bahi-an Portfolio</b> | All Rights Reserved</p>
   </footer>
-</body>
+</body> 
 </html>
