@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahi-an Portfolio</title>
+    <style>
+        /* ===== GENERAL STYLES ===== */
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "Poppins", Arial, sans-serif;
+            background: linear-gradient(135deg, #f8bbd0 0%, #fce4ec 100%);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2 { color: #ad1457; text-align: center; margin-bottom: 10px; }
+        p { line-height: 1.6; }
+
+        /* ===== HEADER / NAVIGATION ===== */
+        header {
+            background: linear-gradient(90deg, #f06292, #ec407a);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        header h1 { margin: 5px 0; font-size: 34px; font-weight: 800; }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        /* ===== PROFILE PICTURE ===== */
+        .profile-pic { display: flex; justify-content: center; }
+        .profile-pic img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #f06292;
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        .centered-skill-text { text-align: center; margin-bottom: 25px; font-size: 18px; }
+        .platform-title { font-size: 22px; color: #ad1457; font-weight: bold; text-align: center; margin-top: 5px; }
+        .platform-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 20px 0; }
+        .platform-icon-wrapper { background-color: #fce4ec; padding: 10px; border-radius: 12px; }
+        .platform-item img { width: 60px; height: 60px; border-radius: 8px; }
+        .platform-item p { font-size: 13px; text-align: center; font-weight: 500; }
+
+        /* ===== PROJECTS / OUTPUTS STYLES ===== */
+        .project-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .project-item {
+            text-align: center;
+            background-color: #fce4ec;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .project-item:hover { transform: scale(1.02); }
+        .project-item img {
+            width: 280px;
+            height: 190px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: #fff;
+        }
+
+        /* Certificate Specific Image Style to show full text */
+        .cert-img { object-fit: contain !important; background: #fff; }
+
+        /* ===== OTHER OUTPUTS ===== */
+        .other-outputs { text-align: center; margin-top: 20px; }
+        .output-list { list-style: none; padding: 0; }
+        .output-list li { font-size: 18px; margin-bottom: 12px; display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .output-list a { color: #ad1457; text-decoration: none; font-weight: bold; }
+
+        /* ===== VIDEOS ===== */
+        .video-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .video-wrapper { text-align: center; }
+        .video-item iframe { width: 320px; height: 180px; border-radius: 20px; }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .contact-box { display: flex; align-items: center; background: #fff; border-radius: 15px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .contact-icon { width: 45px; height: 45px; background: #f48fb1; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-size: 22px; }
+        .work-btn { display: block; margin: 25px auto 0; background: #ec407a; color: white; padding: 12px 25px; border-radius: 10px; font-size: 18px; cursor: pointer; border: none; }
+        
+        footer { text-align: center; padding: 20px; background: #f8bbd0; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#Skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#Tutorials">Tutorials</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section id="home">
+    <div class="profile-pic"><img src="Cn.png" alt="Profile Picture"></div>
+    <h2>Welcome to My Portfolio!</h2>
+    <p style="text-align:center;">
+        Crafting innovative solutions through design, code, and creativity.  
+        Welcome to a space where ideas turn into experience —  
+        a journey of learning, building, and growing. 
+    </p>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>
+        I’m an Information Technology student with a passion for coding, problem-solving,  
+        and learning about emerging technologies.My goal is to grow as an IT professional  
+        and contribute to innovative tech projects that make an impact. 
+    </p>
+</section>
+
+<section id="Skills">
+    <h2>Skills & Tools</h2>
+    <div class="centered-skill-text">
+        <p>🎬 Video & Photo Editing | 🖌️ Canva, Figma, Photoshop, Premiere</p>
+    </div>
+    <div class="platform-title">Platforms I Use</div>
+    <div class="platform-list">
+        <div class="platform-item"><div class="platform-icon-wrapper"><img src="Addob.png" alt="Premiere"></div><p>Premiere</p></div>
+        <div class="platform-item"><div class="platform-icon-wrapper"><img src="Fig.png" alt="Figma"></div><p>Figma</p></div>
+        <div class="platform-item"><div class="platform-icon-wrapper"><img src="Add.png" alt="Photoshop"></div><p>Photoshop</p></div>
+        <div class="platform-item"><div class="platform-icon-wrapper"><img src="Canv.png" alt="Canva"></div><p>Canva</p></div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Outputs</h2>
+    <div class="project-grid">
+        <div class="project-item"><img src="Ss.jpg" alt="Banner"><p>Banner</p></div>
+        <div class="project-item"><img src="Ts.png" alt="T-Shirt Layout"><p>T-Shirt Layout</p></div>
+        <div class="project-item"><img src="Sh.png" alt="Chessboard"><p>Chessboard</p></div>
+    </div>
+
+    <div class="other-outputs">
+        <ul class="output-list">
+            <li><span class="output-icon">📄</span> Canva Portfolio — <a href="https://www.canva.com/design/DAGvxBzvQtQ/4s8VArc0jbtKNpFQzud_eQ/edit?utm_content=DAGvxBzvQtQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Click Here</a></li>
+            <li><span class="output-icon">💻</span> Figma Website — <a href="https://www.figma.com/proto/EFpFv6BXGQiEexLU8lTreA/Portfolio?node-id=0-1&t=2OPX7AHWazTv1gjR-1" target="_blank">Click Here</a></li>
+            <li><span class="output-icon">🛒</span> Figma E-commerce — <a href="https://www.figma.com/proto/pe9XXHKs5KHZAAYDsCTJ9P/Untitled?node-id=0-1&t=UUU662vmuT5UBWaN-1" target="_blank">Click Here</a></li>
+        </ul>
+    </div>
+
+    <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 40px 0;">
+    <h2>Certificate of participating in the IT seminar</h2>
+    <div class="project-grid">
+        <div class="project-item">
+            <img src="Cg.jpg" class="cert-img" alt="Seminar March 5">
+            <p>IT Seminar <br><small>March 05, 2026</small></p>
+        </div>
+        <div class="project-item">
+            <img src="Cf.jpg" class="cert-img" alt="Seminar March 10">
+            <p>Integrative Foundation <br><small>March 10, 2026</small></p>
+        </div>
+        <div class="project-item">
+            <img src="Fc.jpg" class="cert-img" alt="Seminar March 12">
+            <p>CISCO Networking <br><small>March 12, 2026</small></p>
+        </div>
+    </div>
+</section>
+
+<section id="Tutorials">
+    <h2>Video Tutorials</h2>
+    <div class="video-grid">
+        <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/jQ1sfKIl50E"></iframe></div><p>Figma Tutorial</p></div>
+        <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/jzWxBuvwuwQ"></iframe></div><p>Canva Tutorial</p></div>
+        <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/qwNbjGyhZ48"></iframe></div><p>Photoshop Tutorial</p></div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-card">
+        <div class="contact-box"><div class="contact-icon">✉️</div><div class="contact-info"><b>Email:</b><br>lenabahian@gmail.com</div></div>
+        <div class="contact-box"><div class="contact-icon">🌐</div><div class="contact-info"><b>GitHub:</b><br>github.com/bahianlena613</div></div>
+        <div class="contact-box"><div class="contact-icon">📘</div><div class="contact-info"><b>Facebook:</b><br>Lens Catacio Bahian</div></div>
+        <div class="contact-box"><div class="contact-icon">📞</div><div class="contact-info"><b>Phone:</b><br>+63 992 313 4253</div></div>
+        <button class="work-btn">Work With Me</button>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 <b>Bahi-an Portfolio</b> | BSIT-2B</p>
+</footer>
+
+</body>
+</html>
