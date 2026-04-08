@@ -73,6 +73,32 @@
             border: 4px solid #f06292;
         }
 
+        /* ===== RESUME DOWNLOAD/VIEW BUTTON ===== */
+        .resume-container {
+            text-align: center;
+            padding: 20px;
+            margin-top: 10px;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #ad1457;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(173, 20, 87, 0.3);
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            background: #880e4f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(173, 20, 87, 0.4);
+        }
+
         /* ===== SKILLS SECTION ===== */
         .centered-skill-text { text-align: center; margin-bottom: 25px; font-size: 18px; }
         .platform-title { font-size: 22px; color: #ad1457; font-weight: bold; text-align: center; margin-top: 5px; }
@@ -106,7 +132,6 @@
             background: #fff;
         }
 
-        /* Certificate Specific Image Style to show full text */
         .cert-img { object-fit: contain !important; background: #fff; }
 
         /* ===== OTHER OUTPUTS ===== */
@@ -156,9 +181,18 @@
     <h2>About Me</h2>
     <p>
         I’m an Information Technology student with a passion for coding, problem-solving,  
-        and learning about emerging technologies.My goal is to grow as an IT professional  
+        and learning about emerging technologies. My goal is to grow as an IT professional  
         and contribute to innovative tech projects that make an impact. 
     </p>
+
+    <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 20px 0;">
+    <div class="resume-container">
+        <h3>My Professional Resume</h3>
+        <a href="Ls.jpg" target="_blank" class="download-btn">
+            <span>📄</span> View & Download Resume
+        </a>
+        <p><small>(Click the button to view the photo)</small></p>
+    </div>
 </section>
 
 <section id="Skills">
@@ -234,4 +268,5 @@
 </footer>
 
 </body>
-</html>
+    </html>
+            
