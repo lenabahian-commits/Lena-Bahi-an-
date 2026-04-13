@@ -29,7 +29,6 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
         header h1 { margin: 5px 0; font-size: 34px; font-weight: 800; }
-
         nav {
             display: flex;
             justify-content: center;
@@ -131,6 +130,7 @@
             border-radius: 12px;
             object-fit: cover;
             background: #fff;
+            cursor: zoom-in; /* Indicates the image can be expanded */
         }
         .cert-img { object-fit: contain !important; background: #fff; }
 
@@ -152,6 +152,43 @@
         .work-btn { display: block; margin: 25px auto 0; background: #ec407a; color: white; padding: 12px 25px; border-radius: 10px; font-size: 18px; cursor: pointer; border: none; }
         
         footer { text-align: center; padding: 20px; background: #f8bbd0; margin-top: 40px; }
+
+        /* ===== NEW LIGHTBOX (IMAGE VIEWER) STYLES ===== */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            padding-top: 50px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.9); 
+            cursor: pointer;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 10px;
+            animation: zoom 0.3s;
+        }
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+        #modal-caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            text-align: center;
+            color: #ccc;
+            padding: 15px 0;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
     </style>
 </head>
 <body>
@@ -172,7 +209,7 @@
     <h2>Welcome to My Portfolio!</h2>
     <p style="text-align:center;">
         Hi! I'm <b>Lena Bahi-an</b>, a BSIT student. 
-        Crafting innovative solutions through design, code, and creativity.  
+        Crafting innovative solutions through design, code, and creativity. 
         Welcome to a space where ideas turn into experience. 
     </p>
 </section>
@@ -184,10 +221,9 @@
         I consider myself a responsible and orderly person with a passion for coding,
         editing, and learning about emerging technologies.
     </p>
-
     <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 20px 0;">
     <div class="resume-container">
-        <h3>My Professional Resume</h3>
+        <h3> My Professional Resume</h3>
         <a href="Pds.pdf" target="_blank" class="download-btn">
             <span>📄</span> View & Download Resume
         </a>
@@ -266,6 +302,27 @@
 <footer>
     <p>© 2026 <b>Bahi-an Portfolio</b> | BSIT-2B</p>
 </footer>
+
+<div id="imageModal" class="modal" onclick="this.style.display='none'">
+    <img class="modal-content" id="imgFull">
+    <div id="modal-caption"></div>
+</div>
+
+<script>
+    // Select all images inside project items
+    const projectImages = document.querySelectorAll('.project-item img');
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("imgFull");
+    const captionText = document.getElementById("modal-caption");
+
+    projectImages.forEach(img => {
+        img.onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+    });
+</script>
 
 </body>
 </html>
