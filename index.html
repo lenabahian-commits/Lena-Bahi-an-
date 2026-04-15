@@ -1,328 +1,316 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahi-an Portfolio</title>
-    <style>
-        /* ===== GENERAL STYLES ===== */
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: "Poppins", Arial, sans-serif;
-            background: linear-gradient(135deg, #f8bbd0 0%, #fce4ec 100%);
-            color: #333;
-            margin: 0;
-            padding: 0;
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Bahi-an Portfolio</title>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>  
+        /* ===== VARIABLES & DARK MODE ===== */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f8bbd0 0%, #fce4ec 100%);
+            --section-bg: #ffffff;
+            --text-color: #333;
+            --primary-pink: #ad1457;
+            --nav-bg: linear-gradient(90deg, #f06292, #ec407a);
+            --icon-bg: #fce4ec; 
+            --box-shadow: 0 6px 15px rgba(0,0,0,0.1);
         }
-        h1, h2 { color: #ad1457; text-align: center; margin-bottom: 10px; }
+
+        body.dark-mode {
+            --bg-gradient: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+            --section-bg: #1a1a1a;
+            --text-color: #fce4ec;
+            --primary-pink: #f48fb1;
+            --nav-bg: linear-gradient(90deg, #880e4f, #ad1457);
+            --icon-bg: rgba(255, 255, 255, 0.1);
+            --box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+
+        /* ===== GENERAL STYLES ===== */  
+        html { scroll-behavior: smooth; }  
+        body {  
+            font-family: "Poppins", sans-serif;  
+            background: var(--bg-gradient);  
+            color: var(--text-color);  
+            margin: 0; padding: 0;  
+            transition: background 0.5s ease;
+            overflow-x: hidden;
+        }  
+        h2 { color: var(--primary-pink); text-align: center; margin-bottom: 15px; }  
         p { line-height: 1.6; }
 
-        /* ===== HEADER / NAVIGATION ===== */
-        header {
-            background: linear-gradient(90deg, #f06292, #ec407a);
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-        header h1 { margin: 5px 0; font-size: 34px; font-weight: 800; }
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
+        /* SPECIFIC ADJUSTMENT PARA SA CERTIFICATE TITLE */
+        .cert-title {
+            font-size: 22px; 
             font-weight: 800;
-            padding: 8px 16px;
-            border-radius: 30px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            padding: 0 10px;
         }
 
-        /* ===== SECTIONS ===== */
-        section {
-            width: 90%;
-            max-width: 900px;
-            margin: 40px auto;
-            background-color: #fff;
-            border-radius: 20px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            padding: 30px;
+        /* ===== TYPING ANIMATION ===== */
+        .typing-container { display: flex; justify-content: center; margin-bottom: 20px; }
+        .typing-text {
+            font-size: 24px; font-weight: 800; color: var(--primary-pink);
+            border-right: 3px solid var(--primary-pink); 
+            white-space: nowrap; overflow: hidden; width: 0;
+            animation: typing 10s steps(35, end) infinite, blink 0.75s step-end infinite;
         }
+        @keyframes typing { 0% { width: 0; } 50% { width: 100%; } 85% { width: 100%; } 100% { width: 0; } }
+        @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--primary-pink); } }
 
-        /* ===== PROFILE PICTURE ===== */
-        .profile-pic { display: flex; justify-content: center; }
-        .profile-pic img {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #f06292;
+        /* ===== CUSTOM CURSOR ===== */
+        .cursor-dot {
+            width: 20px; height: 20px; background: #ec407a; border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; display: none;
         }
+        @media (min-width: 1024px) { .cursor-dot { display: block; } }
 
-        /* ===== RESUME BUTTON STYLES ===== */
-        .resume-container {
-            text-align: center;
-            padding: 20px;
-            margin-top: 10px;
-        }
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #ad1457;
-            color: white;
-            text-decoration: none;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(173, 20, 87, 0.3);
-            cursor: pointer;
-            border: none;
-        }
-        .download-btn:hover {
-            background: #880e4f;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(173, 20, 87, 0.4);
-        }
+        /* ===== HEADER ===== */  
+        header {  
+            background: var(--nav-bg); color: white; padding: 10px 0; 
+            position: sticky; top: 0; z-index: 1000; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);  
+        }  
+        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 1100px; margin: 0 auto; }
+        nav { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; flex: 1; }  
+        nav a { color: white; text-decoration: none; font-weight: 800; font-size: 14px; padding: 8px 16px; border-radius: 30px; transition: 0.3s; }
+        nav a:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+        .mode-toggle { background: rgba(255, 255, 255, 0.2); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; justify-content: center; align-items: center; }
 
-        /* ===== SKILLS SECTION ===== */
-        .centered-skill-text { text-align: center; margin-bottom: 25px; font-size: 18px; }
-        .platform-title { font-size: 22px; color: #ad1457; font-weight: bold; text-align: center; margin-top: 5px; }
-        .platform-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 20px 0; }
-        .platform-icon-wrapper { background-color: #fce4ec; padding: 10px; border-radius: 12px; }
-        .platform-item img { width: 60px; height: 60px; border-radius: 8px; }
-        .platform-item p { font-size: 13px; text-align: center; font-weight: 500; }
-
-        /* ===== PROJECTS / OUTPUTS STYLES ===== */
-        .project-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 20px;
+        /* ===== SECTIONS ===== */  
+        section {  
+            width: 90%; max-width: 900px; margin: 40px auto; background: var(--section-bg);  
+            border-radius: 20px; padding: 30px; box-shadow: var(--box-shadow);
+            opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out;
         }
-        .project-item {
-            text-align: center;
-            background-color: #fce4ec;
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
-        .project-item:hover { transform: scale(1.02); }
-        .project-item img {
-            width: 280px;
-            height: 190px;
-            border-radius: 12px;
-            object-fit: cover;
-            background: #fff;
-            cursor: zoom-in; /* Indicates the image can be expanded */
-        }
-        .cert-img { object-fit: contain !important; background: #fff; }
+        section.reveal { opacity: 1; transform: translateY(0); }
 
-        /* ===== OTHER OUTPUTS ===== */
-        .other-outputs { text-align: center; margin-top: 20px; }
-        .output-list { list-style: none; padding: 0; }
-        .output-list li { font-size: 18px; margin-bottom: 12px; display: flex; justify-content: center; align-items: center; gap: 8px; }
-        .output-list a { color: #ad1457; text-decoration: none; font-weight: bold; }
+        .profile-pic { display: flex; justify-content: center; margin-bottom: 20px; }  
+        .profile-pic img { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #f06292; }  
 
-        /* ===== VIDEOS ===== */
-        .video-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-        .video-wrapper { text-align: center; }
-        .video-item iframe { width: 320px; height: 180px; border-radius: 20px; }
+        .resume-container { text-align: center; margin-top: 15px; }
+        .download-btn { display: inline-flex; align-items: center; gap: 10px; background: #ad1457; color: white; text-decoration: none; padding: 15px 35px; border-radius: 50px; font-weight: bold; transition: 0.3s; }  
+        .download-btn:hover { background: #880e4f; transform: translateY(-3px); }  
 
-        /* ===== CONTACT SECTION ===== */
-        .contact-card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-        .contact-box { display: flex; align-items: center; background: #fff; border-radius: 15px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .contact-icon { width: 45px; height: 45px; background: #f48fb1; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-size: 22px; }
-        .work-btn { display: block; margin: 25px auto 0; background: #ec407a; color: white; padding: 12px 25px; border-radius: 10px; font-size: 18px; cursor: pointer; border: none; }
+        .centered-skill-text { text-align: center; margin-bottom: 25px; font-size: 16px; font-weight: 500; }
+        .platform-list { display: flex; justify-content: center; gap: 12px; flex-wrap: nowrap; padding: 15px 0; overflow-x: auto; }  
+        .platform-item { text-align: center; flex: 0 0 auto; }
+        .platform-icon-wrapper { background-color: var(--icon-bg); padding: 8px; border-radius: 12px; }  
+        .platform-item img { width: 45px; height: 45px; border-radius: 8px; }  
+        .platform-item p { font-size: 11px; font-weight: 600; margin-top: 5px; }
+
+        .project-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px; }  
+        .project-item { text-align: center; background: var(--icon-bg); border-radius: 15px; padding: 15px; transition: 0.3s; width: 260px; }  
+        .project-item:hover { transform: scale(1.02); }  
+        .project-item img { width: 100%; height: 180px; border-radius: 10px; object-fit: cover; background: #fff; cursor: zoom-in; }  
         
-        footer { text-align: center; padding: 20px; background: #f8bbd0; margin-top: 40px; }
-
-        /* ===== NEW LIGHTBOX (IMAGE VIEWER) STYLES ===== */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 2000; 
-            padding-top: 50px; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0,0,0,0.9); 
-            cursor: pointer;
-        }
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 80vh;
-            border-radius: 10px;
-            animation: zoom 0.3s;
-        }
-        @keyframes zoom {
-            from {transform:scale(0)} 
-            to {transform:scale(1)}
-        }
-        #modal-caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            text-align: center;
-            color: #ccc;
-            padding: 15px 0;
+        .output-list { list-style: none; padding: 0; text-align: center; margin-top: 20px; }
+        .output-list li { margin-bottom: 12px; font-size: 16px; }
+        
+        .output-list a { 
+            color: var(--primary-pink); 
+            text-decoration: none; 
             font-weight: bold;
-            font-size: 20px;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s ease;
+            display: inline-block;
+        }
+        .output-list a:hover { 
+            border-bottom: 2px solid var(--primary-pink);
+            transform: translateX(5px);
         }
 
+        /* VIDEO STYLES */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .video-wrapper { text-align: center; }
+        .video-item { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .video-item iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-wrapper p { margin-top: 10px; font-weight: 600; font-size: 14px; }
+
+        .contact-box { display: flex; align-items: center; background: var(--icon-bg); border-radius: 15px; padding: 15px; margin-bottom: 15px; }  
+        .contact-box i { font-size: 20px; color: var(--primary-pink); margin-right: 15px; width: 30px; text-align: center; }  
+        
+        .work-btn { 
+            display: block; margin: 25px auto 0; background: #ec407a; color: white; 
+            padding: 12px 25px; border: none; border-radius: 10px; cursor: pointer; 
+            font-size: 18px; font-weight: bold; transition: 0.3s; 
+        }
+        .work-btn:hover { background: #ad1457; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(173, 20, 87, 0.3); }
+
+        /* BACK TO TOP BUTTON STYLING */
+        #backToTop {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--primary-pink);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            border: none;
+            font-size: 18px;
+        }
+        #backToTop:hover { transform: translateY(-5px); background: #880e4f; }
+
+        .modal { display: none; position: fixed; z-index: 3000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }  
+        .modal-content { margin: auto; display: block; max-width: 90%; max-height: 80vh; border-radius: 10px; }  
+        #modal-caption { text-align: center; color: #ccc; padding: 15px; font-weight: bold; }
+
+        footer { text-align: center; padding: 25px; background: var(--icon-bg); margin-top: 40px; }  
     </style>
-</head>
+</head>  
+
 <body>
+    <div class="cursor-dot"></div>
 
-<header>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#Skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#Tutorials">Tutorials</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+    <button id="backToTop" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-<section id="home">
-    <div class="profile-pic"><img src="Cn.png" alt="Lena Bahi-an"></div>
-    <h2>Welcome to My Portfolio!</h2>
-    <p style="text-align:center;">
-        Hi! I'm <b>Lena Bahi-an</b>, a BSIT student. 
-        Crafting innovative solutions through design, code, and creativity. 
-        Welcome to a space where ideas turn into experience. 
-    </p>
-</section>
-
-<section id="about">
-    <h2>About Me</h2>
-    <p>
-        I’m an Information Technology student at Central Philippines State University (CPSU). 
-        I consider myself a responsible and orderly person with a passion for coding,
-        editing, and learning about emerging technologies.
-    </p>
-    <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 20px 0;">
-    <div class="resume-container">
-        <h3> My Professional Resume</h3>
-        <a href="Pds.pdf" target="_blank" class="download-btn">
-            <span>📄</span> View & Download Resume
-        </a>
-        <p><small>(Click the button to open the PDF file)</small></p>
-    </div>
-</section>
-
-<section id="Skills">
-    <h2>Skills & Tools</h2>
-    <div class="centered-skill-text">
-        <p>🎬 Video & Photo Editing | 💻 Coding & Slide Presentations</p>
-    </div>
-    <div class="platform-title">Platforms I Use</div>
-    <div class="platform-list">
-        <div class="platform-item"><div class="platform-icon-wrapper"><img src="Addob.png" alt="Premiere"></div><p>Premiere</p></div>
-        <div class="platform-item"><div class="platform-icon-wrapper"><img src="Fig.png" alt="Figma"></div><p>Figma</p></div>
-        <div class="platform-item"><div class="platform-icon-wrapper"><img src="Add.png" alt="Photoshop"></div><p>Photoshop</p></div>
-        <div class="platform-item"><div class="platform-icon-wrapper"><img src="Canv.png" alt="Canva"></div><p>Canva</p></div>
-    </div>
-</section>
-
-<section id="projects">
-    <h2>Outputs</h2>
-    <div class="project-grid">
-        <div class="project-item"><img src="Ss.jpg" alt="Banner"><p>Banner</p></div>
-        <div class="project-item"><img src="Ts.png" alt="T-Shirt Layout"><p>T-Shirt Layout</p></div>
-        <div class="project-item"><img src="Sh.png" alt="Chessboard"><p>Chessboard</p></div>
-    </div>
-
-    <div class="other-outputs">
-        <ul class="output-list">
-            <li><span class="output-icon">📄</span> Canva Portfolio — <a href="https://www.canva.com/design/DAGvxBzvQtQ/4s8VArc0jbtKNpFQzud_eQ/edit" target="_blank">Click Here</a></li>
-            <li><span class="output-icon">💻</span> Figma Website — <a href="https://www.figma.com/proto/EFpFv6BXGQiEexLU8lTreA/Portfolio" target="_blank">Click Here</a></li>
-            <li><span class="output-icon">🛒</span> Figma E-commerce — <a href="https://www.figma.com/proto/pe9XXHKs5KHZAAYDsCTJ9P/Untitled" target="_blank">Click Here</a></li>
-        </ul>
-    </div>
-
-    <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 40px 0;">
-    <h2>Certificate of participating in the IT seminar</h2>
-    <div class="project-grid">
-        <div class="project-item">
-            <img src="Cg.jpg" class="cert-img" alt="IT Seminar">
-            <p>IT Seminar <br><small>March 05, 2026</small></p>
+    <header>  
+        <div class="nav-container">
+            <nav>  
+                <a href="#home">Home</a>  
+                <a href="#about">About</a>  
+                <a href="#skills">Skills</a>  
+                <a href="#projects">Projects</a>  
+                <a href="#Tutorials">Tutorials</a>  
+                <a href="#contact">Contact</a>  
+            </nav>
+            <button class="mode-toggle" id="modeBtn">🌙</button>
         </div>
-        <div class="project-item">
-            <img src="Cf.jpg" class="cert-img" alt="Integrative Foundation">
-            <p>Integrative Foundation <br><small>March 10, 2026</small></p>
+    </header>
+
+    <section id="home">  
+        <div class="profile-pic"><img src="Cn.png" alt="Lena Bahi-an"></div>  
+        <div class="typing-container">
+            <div class="typing-text">Welcome to My Portfolio!</div>
         </div>
-        <div class="project-item">
-            <img src="Fc.jpg" class="cert-img" alt="CISCO Networking">
-            <p>CISCO Networking <br><small>March 12, 2026</small></p>
+        <p style="text-align:center;">  
+            Hi! I'm <b>Lena Bahi-an</b>, a BSIT student.   
+            Crafting innovative solutions through design, code, and creativity.   
+            Welcome to a space where ideas turn into experience.   
+        </p>  
+    </section>
+
+    <section id="about">  
+        <h2>About Me</h2>  
+        <p>I’m an Information Technology student at Central Philippines State University (CPSU). I consider myself a responsible and orderly person with a passion for coding, editing, and learning about emerging technologies.</p>  
+        <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 20px 0;">  
+        <div class="resume-container">  
+            <h3>My Professional Resume</h3>  
+            <a href="Lan.pdf" target="_blank" download class="download-btn">📄 View & Download Resume</a>  
+            <p><small>(Click the button to open or download the PDF file)</small></p>  
+        </div>  
+    </section>
+
+    <section id="skills">  
+        <h2>Skills & Tools</h2>  
+        <div class="centered-skill-text">🎬 Video & Photo Editing | 💻 Coding & Slide Presentations</div>  
+        <div class="platform-list">  
+            <div class="platform-item"><div class="platform-icon-wrapper"><img src="Addob.png" alt="Premiere"></div><p>Premiere</p></div>  
+            <div class="platform-item"><div class="platform-icon-wrapper"><img src="Fig.png" alt="Figma"></div><p>Figma</p></div>  
+            <div class="platform-item"><div class="platform-icon-wrapper"><img src="Add.png" alt="Photoshop"></div><p>Photoshop</p></div>  
+            <div class="platform-item"><div class="platform-icon-wrapper"><img src="Canv.png" alt="Canva"></div><p>Canva</p></div>  
+        </div>  
+    </section>
+
+    <section id="projects">  
+        <h2>Outputs</h2>  
+        <div class="project-grid">  
+            <div class="project-item"><img src="Ss.jpg" alt="Banner"><p>Banner</p></div>  
+            <div class="project-item"><img src="Ts.png" alt="T-Shirt Layout"><p>T-Shirt Layout</p></div>  
+            <div class="project-item"><img src="Sh.png" alt="Chessboard"><p>Chessboard</p></div>  
+        </div>  
+        <ul class="output-list">  
+            <li>📄 Canva Portfolio — <a href="https://www.canva.com/design/DAGvxBzvQtQ/4s8VArc0jbtKNpFQzud_eQ/edit" target="_blank">Click Here</a></li>  
+            <li>💻 Figma Website — <a href="https://www.figma.com/proto/EFpFv6BXGQiEexLU8lTreA/Portfolio" target="_blank">Click Here</a></li>  
+            <li>🛒 Figma E-commerce — <a href="https://www.figma.com/proto/pe9XXHKs5KHZAAYDsCTJ9P/Untitled" target="_blank">Click Here</a></li>  
+        </ul>  
+
+        <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 40px 0;">  
+        
+        <h2 class="cert-title">Certificate of Participation in the IT Seminar</h2>  
+        
+        <div class="project-grid">  
+            <div class="project-item"><img src="Cg.jpg" style="object-fit:contain;" alt="IT Seminar"><p>IT Seminar</p></div>  
+            <div class="project-item"><img src="Cf.jpg" style="object-fit:contain;" alt="Integrative Foundation"><p>Integrative Foundation</p></div>  
+            <div class="project-item"><img src="Fc.jpg" style="object-fit:contain;" alt="CISCO Networking"><p>CISCO Networking</p></div>  
         </div>
+    </section>
+
+    <section id="Tutorials">
+        <h2>Video Tutorials</h2>
+        <div class="video-grid">
+            <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/jQ1sfKIl50E"></iframe></div><p>Figma Tutorial</p></div>
+            <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/jzWxBuvwuwQ"></iframe></div><p>Canva Tutorial</p></div>
+            <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/qwNbjGyhZ48"></iframe></div><p>Photoshop Tutorial</p></div>
+        </div>
+    </section>
+
+    <section id="contact">  
+        <h2>Contact Me</h2>  
+        <div class="contact-box"><i class="fa-solid fa-envelope"></i> <span>lenabahian@gmail.com</span></div>  
+        <div class="contact-box"><i class="fa-brands fa-github"></i> <span>github.com/bahianlena613</span></div>  
+        <div class="contact-box"><i class="fa-brands fa-facebook"></i> <span>Lens Catacio Bahian</span></div>  
+        <div class="contact-box"><i class="fa-solid fa-phone"></i> <span>+63 992 313 4253</span></div>  
+        <button class="work-btn" onclick="window.location.href='mailto:lenabahian@gmail.com'">Work With Me</button>  
+    </section>
+
+    <footer><p>© 2026 <b>Bahi-an Portfolio</b> | BSIT-2B</p></footer>
+
+    <div id="imageModal" class="modal" onclick="this.style.display='none'">  
+        <img class="modal-content" id="imgFull">  
+        <div id="modal-caption"></div>  
     </div>
-</section>
 
-<section id="Tutorials">
-    <h2>Video Tutorials</h2>
-    <div class="video-grid">
-        <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/jQ1sfKIl50E"></iframe></div><p>Figma Tutorial</p></div>
-        <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/jzWxBuvwuwQ"></iframe></div><p>Canva Tutorial</p></div>
-        <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/qwNbjGyhZ48"></iframe></div><p>Photoshop Tutorial</p></div>
-    </div>
-</section>
+    <script>  
+        const modeBtn = document.getElementById('modeBtn');
+        modeBtn.onclick = () => {
+            document.body.classList.toggle('dark-mode');
+            modeBtn.innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        };
 
-<section id="contact">
-    <h2>Contact</h2>
-    <div class="contact-card">
-        <div class="contact-box"><div class="contact-icon">✉️</div><div class="contact-info"><b>Email:</b><br>lenabahian@gmail.com</div></div>
-        <div class="contact-box"><div class="contact-icon">🌐</div><div class="contact-info"><b>GitHub:</b><br>github.com/bahianlena613</div></div>
-        <div class="contact-box"><div class="contact-icon">📘</div><div class="contact-info"><b>Facebook:</b><br>Lens Catacio Bahian</div></div>
-        <div class="contact-box"><div class="contact-icon">📞</div><div class="contact-info"><b>Phone:</b><br>+63 992 313 4253</div></div>
-        <button class="work-btn">Work With Me</button>
-    </div>
-</section>
+        const cursor = document.querySelector('.cursor-dot');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
 
-<footer>
-    <p>© 2026 <b>Bahi-an Portfolio</b> | BSIT-2B</p>
-</footer>
+        const projectImages = document.querySelectorAll('.project-item img');  
+        const modal = document.getElementById("imageModal");  
+        const modalImg = document.getElementById("imgFull");  
+        const captionText = document.getElementById("modal-caption");  
+        projectImages.forEach(img => {  
+            img.onclick = function() { modal.style.display = "block"; modalImg.src = this.src; captionText.innerHTML = this.alt; }  
+        });
 
-<div id="imageModal" class="modal" onclick="this.style.display='none'">
-    <img class="modal-content" id="imgFull">
-    <div id="modal-caption"></div>
-</div>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-<script>
-    // Select all images inside project items
-    const projectImages = document.querySelectorAll('.project-item img');
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("imgFull");
-    const captionText = document.getElementById("modal-caption");
-
-    projectImages.forEach(img => {
-        img.onclick = function() {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
-        }
-    });
-</script>
-
-</body>
-</html>
+        // BACK TO TOP LOGIC
+        const backToTopBtn = document.getElementById("backToTop");
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "flex";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        };
+        backToTopBtn.onclick = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+    </script>
+</body>  
+            </html>
+            
