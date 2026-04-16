@@ -390,6 +390,7 @@
         </div>
     </section>
 
+    
     <section id="contact">  
         <h2>Contact Me</h2>  
         <div class="contact-box"><i class="fa-solid fa-envelope"></i> <span>lenabahian@gmail.com</span></div>  
@@ -410,29 +411,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 
     <script>  
-        /* ===== MUSIC & SOUND EFFECTS LOGIC ===== */
-        const bgMusic = document.getElementById('bg-music');
-        const chatPop = document.getElementById('chat-pop');
-        const musicBtn = document.getElementById('musicBtn');
-        let musicPlaying = false;
-
-        musicBtn.onclick = () => {
-            if (!musicPlaying) {
-                bgMusic.play();
-                musicBtn.innerText = '🔊';
-                musicPlaying = true;
-            } else {
-                bgMusic.pause();
-                musicBtn.innerText = '🔇';
-                musicPlaying = false;
-            }
-        };
-
-        function playChatSound() {
-            chatPop.currentTime = 0;
-            chatPop.play();
-        }
-
         function handleResumeAction() {
             const resumeUrl = 'Lan.pdf';
             window.open(resumeUrl, '_blank');
@@ -542,7 +520,7 @@
 
         document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-        /* ===== CHATBOT LOGIC ===== */
+        /* ===== CHATBOT LOGIC (Strictly English & Smart) ===== */
         const chatBtn = document.getElementById('chat-button');
         const chatWin = document.getElementById('chat-window');
         const closeChat = document.getElementById('close-chat');
@@ -550,10 +528,7 @@
         const userInput = document.getElementById('user-input');
         const chatMessages = document.getElementById('chat-messages');
 
-        chatBtn.onclick = () => {
-            chatWin.style.display = (chatWin.style.display === 'flex') ? 'none' : 'flex';
-            if(chatWin.style.display === 'flex') playChatSound();
-        };
+        chatBtn.onclick = () => chatWin.style.display = (chatWin.style.display === 'flex') ? 'none' : 'flex';
         closeChat.onclick = () => chatWin.style.display = 'none';
 
         function addMessage(text, sender) {
@@ -566,7 +541,6 @@
                 bImg.src = "Cn.png";
                 bImg.className = "bot-img-small";
                 wrapper.appendChild(bImg);
-                playChatSound(); // Play sound when bot replies
             }
 
             const msgDiv = document.createElement('div');
@@ -578,8 +552,8 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Initial Greeting
-        addMessage("Hi! I'm Lena's assistant. How can I help you today? 😊", 'bot');
+        // Initial Professional Greeting
+        addMessage("Hello! I am Lena's AI Assistant. How may I help you explore her portfolio today?", 'bot');
 
         function handleChat() {
             const text = userInput.value.trim();
@@ -589,19 +563,26 @@
             userInput.value = '';
 
             setTimeout(() => {
-                let response = "Pasensya na, hindi ko sigurado 'yan. Pwede mong i-email si Lena sa lenabahian@gmail.com para sa ibang katanungan!";
+                let response = "I'm sorry, I didn't quite catch that. You can reach Lena directly at lenabahian@gmail.com for more specific inquiries!";
                 const lowerText = text.toLowerCase();
 
-                if (lowerText.includes("hello") || lowerText.includes("hi")) {
-                    response = "Hello! Ako ang AI assistant ni Lena. Gusto mo bang makita ang kanyang mga projects o skills?";
-                } else if (lowerText.includes("skills") || lowerText.includes("tools")) {
-                    response = "Magaling si Lena sa Figma, Canva, Photoshop, at Premiere Pro. Check mo ang 'Skills' section!";
-                } else if (lowerText.includes("projects") || lowerText.includes("outputs")) {
-                    response = "Maraming outputs si Lena sa Graphic Design at Video Editing. Scroll ka lang sa 'Projects' section.";
-                } else if (lowerText.includes("resume") || lowerText.includes("cv")) {
-                    response = "Ang resume ni Lena ay pwedeng i-download sa 'About' section. Click mo lang ang PDF button!";
-                } else if (lowerText.includes("school") || lowerText.includes("college")) {
-                    response = "Si Lena ay nag-aaral sa Central Philippines State University (CPSU) sa kursong BSIT.";
+                if (lowerText.includes("hello") || lowerText.includes("hi") || lowerText.includes("hey")) {
+                    response = "Greetings! I can provide information about Lena's skills, academic background, or specific projects like Fresh Bites Kitchen. What would you like to know?";
+                } 
+                else if (lowerText.includes("skills") || lowerText.includes("tools") || lowerText.includes("tech")) {
+                    response = "Lena is proficient in Front-end Development (HTML/CSS/JS) and UI/UX tools like Figma and Canva. She also has experience with video editing in Premiere Pro.";
+                } 
+                else if (lowerText.includes("projects") || lowerText.includes("fresh bites") || lowerText.includes("vendo")) {
+                    response = "Lena has developed several impressive projects, including 'Fresh Bites Kitchen' (a food ordering system) and 'Check-U-Heart Vendo' (a health kiosk). You can view them in the Projects section!";
+                } 
+                else if (lowerText.includes("resume") || lowerText.includes("cv") || lowerText.includes("download")) {
+                    response = "You can view and download Lena's professional resume in the 'About' section by clicking the PDF button.";
+                } 
+                else if (lowerText.includes("school") || lowerText.includes("education") || lowerText.includes("cpsu")) {
+                    response = "Lena is a dedicated Bachelor of Science in Information Technology (BSIT) student at Central Philippines State University (CPSU).";
+                }
+                else if (lowerText.includes("contact") || lowerText.includes("email") || lowerText.includes("hire")) {
+                    response = "You can contact Lena via email at lenabahian@gmail.com or through her social links in the Contact section.";
                 }
 
                 addMessage(response, 'bot');
