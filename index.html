@@ -118,7 +118,7 @@
         nav a:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
         .mode-toggle { background: rgba(255, 255, 255, 0.2); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; justify-content: center; align-items: center; }
 
-        /* ===== SECTIONS (Glassmorphism & Glow) ===== */  
+        /* ===== SECTIONS (Scroll Reveal Effect) ===== */  
         section {  
             width: 90%; max-width: 900px; margin: 40px auto; 
             background: var(--section-bg);  
@@ -126,10 +126,17 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 20px; padding: 30px; box-shadow: var(--box-shadow);
-            opacity: 0; transform: translateY(20px); 
-            transition: all 0.6s ease-out, box-shadow 0.3s ease, border 0.3s ease; 
+            
+            opacity: 0; 
+            transform: translateY(60px); 
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
         }
-        section.reveal { opacity: 1; transform: translateY(0); }
+        
+        section.reveal { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
         section:hover {
             box-shadow: 0 0 30px var(--hover-glow);
             border: 1px solid var(--primary-pink);
@@ -139,7 +146,21 @@
         .profile-pic img { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #f06292; }  
 
         .resume-container { text-align: center; margin-top: 15px; }
-        .download-btn { display: inline-flex; align-items: center; gap: 10px; background: #ad1457; color: white; text-decoration: none; padding: 15px 35px; border-radius: 50px; font-weight: bold; transition: 0.3s; }  
+        /* Inaayos ang button style para maging clickable cursor */
+        .download-btn { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px; 
+            background: #ad1457; 
+            color: white; 
+            border: none;
+            cursor: pointer;
+            padding: 15px 35px; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s; 
+        }  
         .download-btn:hover { background: #880e4f; transform: translateY(-3px); }  
 
         .centered-skill-text { text-align: center; margin-bottom: 25px; font-size: 16px; font-weight: 500; }
@@ -251,8 +272,8 @@
         <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 20px 0;">  
         <div class="resume-container">  
             <h3>My Professional Resume</h3>  
-            <a href="Lan.pdf" target="_blank" class="download-btn">📄 View & Download Resume</a>  
-            <p><small>(Click the button to view the resume in a new tab)</small></p>  
+            <button onclick="handleResumeAction()" class="download-btn">📄 View & Download Resume</button>  
+            <p><small>(Click to view in a new tab and auto-download)</small></p>  
         </div>  
     </section>
 
@@ -329,6 +350,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 
     <script>  
+        // FUNCTION PARA SA SABAY NA VIEW AT DOWNLOAD
+        function handleResumeAction() {
+            const resumeUrl = 'Lan.pdf';
+            
+            // Bubukas sa bagong tab para makita (View)
+            window.open(resumeUrl, '_blank');
+            
+            // Gagawa ng temporary link para i-trigger ang download
+            const downloadLink = document.createElement('a');
+            downloadLink.href = resumeUrl;
+            downloadLink.download = 'Bahi-an_Resume.pdf'; // Pangalan ng file pag-download
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        }
+
         function initTechNodes() {
             const container = document.getElementById('nodes-container');
             const nodeCount = 35;
@@ -355,7 +392,6 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        // UPDATED WORDS ARRAY
         const textElement = document.getElementById('typewriter');
         const words = [
             "Welcome to My Portfolio!", 
@@ -413,9 +449,19 @@
             img.onclick = function() { modal.style.display = "block"; modalImg.src = this.src; }  
         });
 
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('reveal'); });
-        }, { threshold: 0.1 });
+            entries.forEach(entry => { 
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal'); 
+                }
+            });
+        }, observerOptions);
+
         document.querySelectorAll('section').forEach(s => observer.observe(s));
 
         const backToTopBtn = document.getElementById("backToTop");
