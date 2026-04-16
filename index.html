@@ -126,7 +126,6 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 20px; padding: 30px; box-shadow: var(--box-shadow);
-            
             opacity: 0; 
             transform: translateY(60px); 
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
@@ -146,7 +145,6 @@
         .profile-pic img { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #f06292; }  
 
         .resume-container { text-align: center; margin-top: 15px; }
-        /* Inaayos ang button style para maging clickable cursor */
         .download-btn { 
             display: inline-flex; 
             align-items: center; 
@@ -223,22 +221,65 @@
         .work-btn { display: block; margin: 25px auto 0; background: #ec407a; color: white; padding: 12px 25px; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; }
         .work-btn:hover { background: #ad1457; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(173, 20, 87, 0.3); }
 
-        #backToTop { position: fixed; bottom: 25px; right: 25px; background: var(--primary-pink); color: white; width: 45px; height: 45px; border-radius: 50%; display: none; justify-content: center; align-items: center; cursor: pointer; z-index: 2000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; border: none; font-size: 18px; }
-        #backToTop:hover { transform: translateY(-5px); background: #880e4f; }
-
         .modal { display: none; position: fixed; z-index: 3000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }  
         .modal-content { margin: auto; display: block; max-width: 90%; max-height: 80vh; border-radius: 10px; }  
         #modal-caption { text-align: center; color: #ccc; padding: 15px; font-weight: bold; }
 
-        footer { text-align: center; padding: 25px; background: var(--icon-bg); margin-top: 40px; }  
+        footer { text-align: center; padding: 25px; background: var(--icon-bg); margin-top: 40px; }
+
+        /* ===== CHATBOT STYLES ===== */
+        #chat-widget {
+            position: fixed; bottom: 25px; right: 25px;
+            z-index: 5000; font-family: 'Poppins', sans-serif;
+        }
+        #chat-button {
+            width: 60px; height: 60px; background: var(--nav-bg);
+            border: none; border-radius: 50%; color: white;
+            font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: 0.3s; display: flex; justify-content: center; align-items: center;
+        }
+        #chat-window {
+            display: none; width: 320px; height: 450px;
+            background: var(--section-bg); backdrop-filter: blur(15px);
+            border: 2px solid var(--primary-pink); border-radius: 20px;
+            position: absolute; bottom: 80px; right: 0;
+            flex-direction: column; overflow: hidden; box-shadow: var(--box-shadow);
+        }
+        .chat-header {
+            background: var(--nav-bg); color: white; padding: 12px 15px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .chat-header-info { display: flex; align-items: center; gap: 10px; }
+        .chat-header-info img { width: 30px; height: 30px; border-radius: 50%; border: 1px solid white; object-fit: cover; }
+        
+        .chat-messages {
+            flex: 1; padding: 15px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .msg-wrapper { display: flex; flex-direction: column; width: 100%; }
+        .msg { padding: 8px 12px; border-radius: 15px; max-width: 80%; font-size: 13px; line-height: 1.4; }
+        .msg.bot { background: var(--icon-bg); color: var(--text-color); align-self: flex-start; border-bottom-left-radius: 2px; }
+        .msg.user { background: var(--primary-pink); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .bot-img-small { width: 22px; height: 22px; border-radius: 50%; margin-bottom: 4px; border: 1px solid var(--primary-pink); object-fit: cover; }
+        
+        .chat-input-area {
+            padding: 15px; border-top: 1px solid var(--glass-border);
+            display: flex; gap: 8px; background: rgba(255,255,255,0.1);
+        }
+        #user-input {
+            flex: 1; border: 1px solid var(--primary-pink); border-radius: 20px;
+            padding: 8px 15px; outline: none; background: transparent; color: var(--text-color);
+        }
+        #send-btn {
+            background: var(--primary-pink); border: none; color: white;
+            width: 35px; height: 35px; border-radius: 50%; cursor: pointer;
+        }
     </style>
 </head>  
 
 <body>
     <div id="nodes-container"></div>
-
     <div class="cursor-dot"></div>
-    <button id="backToTop" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
 
     <header>  
         <div class="nav-container">
@@ -253,6 +294,25 @@
             <button class="mode-toggle" id="modeBtn">🌙</button>
         </div>
     </header>
+
+    <div id="chat-widget">
+        <button id="chat-button"><i class="fa-solid fa-comments"></i></button>
+        <div id="chat-window">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <img src="Cn.png" alt="Lena Assistant">
+                    <span style="font-size: 14px; font-weight: 600;">Lena's Virtual Assistant</span>
+                </div>
+                <i class="fa-solid fa-xmark" style="cursor:pointer" id="close-chat"></i>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                </div>
+            <div class="chat-input-area">
+                <input type="text" id="user-input" placeholder="Type your inquiry here...">
+                <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
 
     <section id="home">  
         <div class="profile-pic"><img src="Cn.png" alt="Lena Bahi-an"></div>  
@@ -271,7 +331,7 @@
         <p> A Bachelor of Science in Information Technology student at Central Philippines State University (CPSU). I consider myself a responsible and orderly person with a passion for coding, editing, and learning about emerging technologies.</p>  
         <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 20px 0;">  
         <div class="resume-container">  
-            <h3>My Professional Resume</h3>  
+            <h3> My Professional Resume</h3>  
             <button onclick="handleResumeAction()" class="download-btn">📄 View & Download Resume</button>  
             <p><small>(Click to view in a new tab and auto-download)</small></p>  
         </div>  
@@ -350,17 +410,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 
     <script>  
-        // FUNCTION PARA SA SABAY NA VIEW AT DOWNLOAD
+        /* ===== MUSIC & SOUND EFFECTS LOGIC ===== */
+        const bgMusic = document.getElementById('bg-music');
+        const chatPop = document.getElementById('chat-pop');
+        const musicBtn = document.getElementById('musicBtn');
+        let musicPlaying = false;
+
+        musicBtn.onclick = () => {
+            if (!musicPlaying) {
+                bgMusic.play();
+                musicBtn.innerText = '🔊';
+                musicPlaying = true;
+            } else {
+                bgMusic.pause();
+                musicBtn.innerText = '🔇';
+                musicPlaying = false;
+            }
+        };
+
+        function playChatSound() {
+            chatPop.currentTime = 0;
+            chatPop.play();
+        }
+
         function handleResumeAction() {
             const resumeUrl = 'Lan.pdf';
-            
-            // Bubukas sa bagong tab para makita (View)
             window.open(resumeUrl, '_blank');
-            
-            // Gagawa ng temporary link para i-trigger ang download
             const downloadLink = document.createElement('a');
             downloadLink.href = resumeUrl;
-            downloadLink.download = 'Bahi-an_Resume.pdf'; // Pangalan ng file pag-download
+            downloadLink.download = 'Bahi-an_Resume.pdf'; 
             document.body.appendChild(downloadLink);
             downloadLink.click();
             document.body.removeChild(downloadLink);
@@ -464,11 +542,75 @@
 
         document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-        const backToTopBtn = document.getElementById("backToTop");
-        window.onscroll = function() {
-            backToTopBtn.style.display = (document.documentElement.scrollTop > 300) ? "flex" : "none";
+        /* ===== CHATBOT LOGIC ===== */
+        const chatBtn = document.getElementById('chat-button');
+        const chatWin = document.getElementById('chat-window');
+        const closeChat = document.getElementById('close-chat');
+        const sendBtn = document.getElementById('send-btn');
+        const userInput = document.getElementById('user-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        chatBtn.onclick = () => {
+            chatWin.style.display = (chatWin.style.display === 'flex') ? 'none' : 'flex';
+            if(chatWin.style.display === 'flex') playChatSound();
         };
-        backToTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+        closeChat.onclick = () => chatWin.style.display = 'none';
+
+        function addMessage(text, sender) {
+            const wrapper = document.createElement('div');
+            wrapper.className = "msg-wrapper";
+            wrapper.style.alignItems = (sender === 'user') ? "flex-end" : "flex-start";
+
+            if (sender === 'bot') {
+                const bImg = document.createElement('img');
+                bImg.src = "Cn.png";
+                bImg.className = "bot-img-small";
+                wrapper.appendChild(bImg);
+                playChatSound(); // Play sound when bot replies
+            }
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg ${sender}`;
+            msgDiv.innerText = text;
+            
+            wrapper.appendChild(msgDiv);
+            chatMessages.appendChild(wrapper);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Initial Greeting
+        addMessage("Hi! I'm Lena's assistant. How can I help you today? 😊", 'bot');
+
+        function handleChat() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user');
+            userInput.value = '';
+
+            setTimeout(() => {
+                let response = "Pasensya na, hindi ko sigurado 'yan. Pwede mong i-email si Lena sa lenabahian@gmail.com para sa ibang katanungan!";
+                const lowerText = text.toLowerCase();
+
+                if (lowerText.includes("hello") || lowerText.includes("hi")) {
+                    response = "Hello! Ako ang AI assistant ni Lena. Gusto mo bang makita ang kanyang mga projects o skills?";
+                } else if (lowerText.includes("skills") || lowerText.includes("tools")) {
+                    response = "Magaling si Lena sa Figma, Canva, Photoshop, at Premiere Pro. Check mo ang 'Skills' section!";
+                } else if (lowerText.includes("projects") || lowerText.includes("outputs")) {
+                    response = "Maraming outputs si Lena sa Graphic Design at Video Editing. Scroll ka lang sa 'Projects' section.";
+                } else if (lowerText.includes("resume") || lowerText.includes("cv")) {
+                    response = "Ang resume ni Lena ay pwedeng i-download sa 'About' section. Click mo lang ang PDF button!";
+                } else if (lowerText.includes("school") || lowerText.includes("college")) {
+                    response = "Si Lena ay nag-aaral sa Central Philippines State University (CPSU) sa kursong BSIT.";
+                }
+
+                addMessage(response, 'bot');
+            }, 800);
+        }
+
+        sendBtn.onclick = handleChat;
+        userInput.onkeypress = (e) => { if(e.key === 'Enter') handleChat(); };
+
     </script>
 </body>  
 </html>
