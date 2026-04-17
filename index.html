@@ -214,8 +214,10 @@
         .video-wrapper:hover { transform: translateY(-10px); }
         .video-wrapper:hover .video-item { border-color: var(--primary-pink); box-shadow: 0 0 20px var(--hover-glow); }
 
-        .contact-box { display: flex; align-items: center; background: var(--icon-bg); border-radius: 15px; padding: 15px; margin-bottom: 15px; transition: 0.3s; }  
-        .contact-box:hover { box-shadow: 0 0 15px var(--hover-glow); transform: scale(1.02); } 
+        /* CONTACT STYLE FIXES */
+        .contact-link { text-decoration: none; color: inherit; display: block; }
+        .contact-box { display: flex; align-items: center; background: var(--icon-bg); border-radius: 15px; padding: 15px; margin-bottom: 15px; transition: 0.3s; border: 1px solid transparent; }  
+        .contact-box:hover { box-shadow: 0 0 15px var(--hover-glow); transform: scale(1.02); border: 1px solid var(--primary-pink); } 
         .contact-box i { font-size: 20px; color: var(--primary-pink); margin-right: 15px; width: 30px; text-align: center; }  
         
         .work-btn { display: block; margin: 25px auto 0; background: #ec407a; color: white; padding: 12px 25px; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; }
@@ -390,13 +392,23 @@
         </div>
     </section>
 
-    
     <section id="contact">  
         <h2>Contact Me</h2>  
-        <div class="contact-box"><i class="fa-solid fa-envelope"></i> <span>lenabahian@gmail.com</span></div>  
-        <div class="contact-box"><i class="fa-brands fa-github"></i> <span>github.com/bahianlena613</span></div>  
-        <div class="contact-box"><i class="fa-brands fa-facebook"></i> <span>Lens Catacio Bahian</span></div>  
-        <div class="contact-box"><i class="fa-solid fa-phone"></i> <span>+63 992 313 4253</span></div>  
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lenabahian@gmail.com" target="_blank" class="contact-link">
+            <div class="contact-box"><i class="fa-solid fa-envelope"></i> <span>lenabahian@gmail.com</span></div>  
+        </a>
+
+        <a href="https://github.com/lenabahian-commits/Lena-Bahi-an-" target="_blank" class="contact-link">
+            <div class="contact-box"><i class="fa-brands fa-github"></i> <span>github.com/lenabahian-commits</span></div>  
+        </a>
+
+        <a href="https://www.facebook.com/lens.bahian" target="_blank" class="contact-link">
+            <div class="contact-box"><i class="fa-brands fa-facebook"></i> <span>Lens Catacio Bahian</span></div>  
+        </a>
+
+        <a href="javascript:void(0);" onclick="window.location.href='tel:+639923134253';" class="contact-link">
+            <div class="contact-box"><i class="fa-solid fa-phone"></i> <span>+63 992 313 4253</span></div>  
+        </a>
         
         <button class="work-btn" onclick="window.location.href='mailto:lenabahian@gmail.com'">Work With Me</button>  
     </section>
@@ -520,7 +532,7 @@
 
         document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-        /* ===== CHATBOT LOGIC (Strictly English & Smart) ===== */
+        /* ===== CHATBOT LOGIC (English Only) ===== */
         const chatBtn = document.getElementById('chat-button');
         const chatWin = document.getElementById('chat-window');
         const closeChat = document.getElementById('close-chat');
@@ -552,7 +564,6 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Initial Professional Greeting
         addMessage("Hello! I am Lena's AI Assistant. How may I help you explore her portfolio today?", 'bot');
 
         function handleChat() {
@@ -567,22 +578,19 @@
                 const lowerText = text.toLowerCase();
 
                 if (lowerText.includes("hello") || lowerText.includes("hi") || lowerText.includes("hey")) {
-                    response = "Greetings! I can provide information about Lena's skills, academic background, or specific projects like Fresh Bites Kitchen. What would you like to know?";
+                    response = "Greetings! I can provide information about Lena's skills, academic background, or specific projects. What would you like to know?";
                 } 
                 else if (lowerText.includes("skills") || lowerText.includes("tools") || lowerText.includes("tech")) {
-                    response = "Lena is proficient in Front-end Development (HTML/CSS/JS) and UI/UX tools like Figma and Canva. She also has experience with video editing in Premiere Pro.";
+                    response = "Lena is proficient in Front-end Development (HTML/CSS/JS) and UI/UX tools like Figma and Canva. She also has experience with video editing.";
                 } 
-                else if (lowerText.includes("projects") || lowerText.includes("fresh bites") || lowerText.includes("vendo")) {
-                    response = "Lena has developed several impressive projects, including 'Fresh Bites Kitchen' (a food ordering system) and 'Check-U-Heart Vendo' (a health kiosk). You can view them in the Projects section!";
+                else if (lowerText.includes("projects")) {
+                    response = "Lena has worked on several projects, including the 'Fresh Bites Kitchen' ordering system. Check the Projects section for details!";
                 } 
-                else if (lowerText.includes("resume") || lowerText.includes("cv") || lowerText.includes("download")) {
-                    response = "You can view and download Lena's professional resume in the 'About' section by clicking the PDF button.";
+                else if (lowerText.includes("resume") || lowerText.includes("cv")) {
+                    response = "You can view and download Lena's professional resume in the 'About' section.";
                 } 
-                else if (lowerText.includes("school") || lowerText.includes("education") || lowerText.includes("cpsu")) {
-                    response = "Lena is a dedicated Bachelor of Science in Information Technology (BSIT) student at Central Philippines State University (CPSU).";
-                }
-                else if (lowerText.includes("contact") || lowerText.includes("email") || lowerText.includes("hire")) {
-                    response = "You can contact Lena via email at lenabahian@gmail.com or through her social links in the Contact section.";
+                else if (lowerText.includes("contact") || lowerText.includes("email")) {
+                    response = "You can contact Lena via email at lenabahian@gmail.com or through the links in the Contact section.";
                 }
 
                 addMessage(response, 'bot');
