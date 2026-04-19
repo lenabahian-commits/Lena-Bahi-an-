@@ -10,27 +10,34 @@
     <style>  
         /* ===== VARIABLES & DARK MODE ===== */
         :root {
-            --bg-gradient: linear-gradient(135deg, #f8bbd0 0%, #fce4ec 100%);
-            --section-bg: rgba(255, 255, 255, 0.7); 
-            --glass-border: rgba(255, 255, 255, 0.5);
+            --bg-gradient: radial-gradient(at 0% 0%, #fce4ec 0%, transparent 50%), 
+                           radial-gradient(at 100% 0%, #f8bbd0 0%, transparent 50%), 
+                           radial-gradient(at 100% 100%, #ff80ab 0%, transparent 50%), 
+                           radial-gradient(at 0% 100%, #fce4ec 0%, transparent 50%);
+            --bg-fallback: #fce4ec;
+            --section-bg: rgba(255, 255, 255, 0.85); 
+            --glass-border: rgba(255, 255, 255, 0.6);
             --text-color: #333;
-            --primary-pink: #ad1457;
-            --nav-bg: linear-gradient(90deg, #f06292, #ec407a);
-            --icon-bg: rgba(252, 228, 236, 0.8); 
-            --box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            --hover-glow: rgba(173, 20, 87, 0.15); 
+            --primary-pink: #D81B60; 
+            --nav-bg: #000000; 
+            --icon-bg: rgba(252, 228, 236, 0.9); 
+            --box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            --hover-glow: rgba(216, 27, 96, 0.2); 
         }
 
         body.dark-mode {
-            --bg-gradient: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
-            --section-bg: rgba(26, 26, 26, 0.8);
+            --bg-gradient: radial-gradient(at 0% 0%, #2c3e50 0%, transparent 50%), 
+                           radial-gradient(at 100% 0%, #000000 0%, transparent 50%), 
+                           radial-gradient(at 100% 100%, #d81b6033 0%, transparent 50%);
+            --bg-fallback: #000000;
+            --section-bg: rgba(26, 26, 26, 0.9);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-color: #fce4ec;
-            --primary-pink: #f48fb1;
-            --nav-bg: linear-gradient(90deg, #880e4f, #ad1457);
+            --primary-pink: #D81B60; 
+            --nav-bg: #000000;
             --icon-bg: rgba(255, 255, 255, 0.05);
             --box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-            --hover-glow: rgba(244, 143, 177, 0.3); 
+            --hover-glow: rgba(216, 27, 96, 0.4); 
         }
 
         /* ===== TECH PINK NODES STYLE ===== */
@@ -62,7 +69,8 @@
         html { scroll-behavior: smooth; }  
         body {  
             font-family: "Poppins", sans-serif;  
-            background: var(--bg-gradient);  
+            background-color: var(--bg-fallback);
+            background-image: var(--bg-gradient);  
             color: var(--text-color);  
             margin: 0; padding: 0;  
             transition: background 0.5s ease;
@@ -102,28 +110,66 @@
 
         /* ===== CUSTOM CURSOR ===== */
         .cursor-dot {
-            width: 20px; height: 20px; background: #ec407a; border-radius: 50%;
+            width: 20px; height: 20px; background: var(--primary-pink); border-radius: 50%;
             position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; display: none;
         }
         @media (min-width: 1024px) { .cursor-dot { display: block; } }
 
         /* ===== HEADER ===== */  
         header {  
-            background: var(--nav-bg); color: white; padding: 10px 0; 
-            position: sticky; top: 0; z-index: 1000; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);  
+            background: var(--nav-bg); 
+            color: white; 
+            padding: 15px 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  
         }  
-        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 1100px; margin: 0 auto; }
-        nav { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; flex: 1; }  
-        nav a { color: white; text-decoration: none; font-weight: 800; font-size: 14px; padding: 8px 16px; border-radius: 30px; transition: 0.3s; }
-        nav a:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
-        .mode-toggle { background: rgba(255, 255, 255, 0.2); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; justify-content: center; align-items: center; }
+        .nav-container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 95%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-pink);
+            text-decoration: none;
+        }
+        nav { 
+            display: flex; 
+            gap: 15px; 
+            align-items: center;
+        }  
+        nav a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-weight: 400; 
+            font-size: 15px; 
+            padding: 5px 10px; 
+            transition: 0.3s; 
+        }
+        nav a:hover { 
+            color: var(--primary-pink);
+        }
+        .mode-toggle { 
+            background: transparent; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            font-size: 18px; 
+            margin-left: 10px;
+        }
 
-        /* ===== SECTIONS (Scroll Reveal Effect) ===== */  
+        /* ===== SECTIONS ===== */  
         section {  
             width: 90%; max-width: 900px; margin: 40px auto; 
             background: var(--section-bg);  
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
             border-radius: 20px; padding: 30px; box-shadow: var(--box-shadow);
             opacity: 0; 
@@ -137,19 +183,34 @@
         }
 
         section:hover {
-            box-shadow: 0 0 30px var(--hover-glow);
+            box-shadow: 0 15px 45px var(--hover-glow);
             border: 1px solid var(--primary-pink);
         }
 
-        .profile-pic { display: flex; justify-content: center; margin-bottom: 20px; }  
-        .profile-pic img { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #f06292; }  
+        /* PROFILE ANIMATION (FLOATING) */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
 
-        .resume-container { text-align: center; margin-top: 15px; }
+        .profile-pic { display: flex; justify-content: center; margin-bottom: 20px; }  
+        .profile-pic img { 
+            width: 250px; 
+            height: 250px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            border: 4px solid var(--primary-pink); 
+            box-shadow: 0 0 25px var(--hover-glow);
+            animation: float 4s ease-in-out infinite;
+        }  
+
+        .resume-container { text-align: center; margin-top: 25px; }
         .download-btn { 
             display: inline-flex; 
             align-items: center; 
             gap: 10px; 
-            background: #ad1457; 
+            background: var(--primary-pink); 
             color: white; 
             border: none;
             cursor: pointer;
@@ -159,12 +220,13 @@
             font-family: 'Poppins', sans-serif;
             transition: 0.3s; 
         }  
-        .download-btn:hover { background: #880e4f; transform: translateY(-3px); }  
+        .download-btn:hover { opacity: 0.9; transform: translateY(-3px); box-shadow: 0 5px 15px var(--hover-glow); }  
 
         .centered-skill-text { text-align: center; margin-bottom: 25px; font-size: 16px; font-weight: 500; }
         .platform-list { display: flex; justify-content: center; gap: 12px; flex-wrap: nowrap; padding: 15px 0; overflow-x: auto; }  
         .platform-item { text-align: center; flex: 0 0 auto; }
-        .platform-icon-wrapper { background-color: var(--icon-bg); padding: 8px; border-radius: 12px; }  
+        .platform-icon-wrapper { background-color: var(--icon-bg); padding: 8px; border-radius: 12px; transition: 0.3s; }  
+        .platform-icon-wrapper:hover { transform: scale(1.1); background-color: #fff; }
         .platform-item img { width: 45px; height: 45px; border-radius: 8px; }  
         .platform-item p { font-size: 11px; font-weight: 600; margin-top: 5px; }
 
@@ -181,11 +243,12 @@
             width: 260px;
             transform-style: preserve-3d;
             transform: perspective(1000px);
-            transition: box-shadow 0.3s ease, border 0.3s ease; 
+            transition: 0.3s ease; 
         }  
         .project-item:hover {
-            box-shadow: 0 0 20px var(--hover-glow);
+            box-shadow: 0 10px 30px var(--hover-glow);
             border: 1px solid var(--primary-pink);
+            background: #fff;
         }
         .project-item img { 
             width: 100%; height: 180px; 
@@ -212,22 +275,99 @@
         .video-item { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 3px solid transparent; transition: 0.3s; }
         .video-item iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         .video-wrapper:hover { transform: translateY(-10px); }
-        .video-wrapper:hover .video-item { border-color: var(--primary-pink); box-shadow: 0 0 20px var(--hover-glow); }
+        .video-wrapper:hover .video-item { border-color: var(--primary-pink); box-shadow: 0 10px 25px var(--hover-glow); }
 
-        /* CONTACT STYLE FIXES */
-        .contact-link { text-decoration: none; color: inherit; display: block; }
-        .contact-box { display: flex; align-items: center; background: var(--icon-bg); border-radius: 15px; padding: 15px; margin-bottom: 15px; transition: 0.3s; border: 1px solid transparent; }  
-        .contact-box:hover { box-shadow: 0 0 15px var(--hover-glow); transform: scale(1.02); border: 1px solid var(--primary-pink); } 
-        .contact-box i { font-size: 20px; color: var(--primary-pink); margin-right: 15px; width: 30px; text-align: center; }  
-        
-        .work-btn { display: block; margin: 25px auto 0; background: #ec407a; color: white; padding: 12px 25px; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; }
-        .work-btn:hover { background: #ad1457; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(173, 20, 87, 0.3); }
+        /* ===== CONTACT FORM STYLES ===== */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--glass-border);
+            border-radius: 10px;
+            background: var(--icon-bg);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            background: #fff;
+            box-shadow: 0 0 10px var(--hover-glow);
+        }
+        .submit-btn {
+            background: var(--primary-pink);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(216, 27, 96, 0.4);
+            opacity: 0.9;
+        }
+
+        /* ===== FOOTER & SOCIAL ICONS ===== */
+        footer { 
+            text-align: center; 
+            padding: 40px 25px; 
+            background: var(--nav-bg); 
+            color: white; 
+            margin-top: 40px; 
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px; 
+            margin-bottom: 20px;
+        }
+
+        .social-icon {
+            font-size: 18px; 
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--hover-glow);
+        }
 
         .modal { display: none; position: fixed; z-index: 3000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }  
         .modal-content { margin: auto; display: block; max-width: 90%; max-height: 80vh; border-radius: 10px; }  
         #modal-caption { text-align: center; color: #ccc; padding: 15px; font-weight: bold; }
-
-        footer { text-align: center; padding: 25px; background: var(--icon-bg); margin-top: 40px; }
 
         /* ===== CHATBOT STYLES ===== */
         #chat-widget {
@@ -235,7 +375,7 @@
             z-index: 5000; font-family: 'Poppins', sans-serif;
         }
         #chat-button {
-            width: 60px; height: 60px; background: var(--nav-bg);
+            width: 60px; height: 60px; background: var(--primary-pink);
             border: none; border-radius: 50%; color: white;
             font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: 0.3s; display: flex; justify-content: center; align-items: center;
@@ -276,6 +416,151 @@
             background: var(--primary-pink); border: none; color: white;
             width: 35px; height: 35px; border-radius: 50%; cursor: pointer;
         }
+
+        @media (max-width: 600px) {
+            .form-row { flex-direction: column; gap: 15px; }
+        }
+    /* Container para naka-center lahat */
+.home-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Flexbox para sa icons */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Styling para sa bilog na icons */
+.social-btn {
+    width: 35px; /* Size ng bilog */
+    height: 35px;
+    border: 1.5px solid #D81B60; /* Kulay ng border */
+    border-radius: 50%; /* Gagawa ng perfect circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D81B60; /* Kulay ng icon */
+    text-decoration: none;
+    font-size: 15px; /* Size ng icon sa loob */
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.social-btn:hover {
+    background: #D81B60;
+    color: white;
+}
+
+/* Styling para sa Button */
+.see-more-btn {
+    background: #D81B60;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px; /* Capsule shape */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.see-more-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+    /* ===== CONTACT FORM STYLES ===== */
+#contact h2 {
+    font-size: 22px; /* Saktong laki lang */
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 450px; /* Mas pinaliit ang form para mas compact */
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid rgba(216, 27, 96, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--text-color);
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-pink);
+    background: #fff;
+}
+
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+    }
+}
+    
+/* Styling para sa Icons bago ang Footer */
+.footer-icons .social-icon {
+    background: #ad1457; /* Dark Pink background */
+    color: white; /* Puting icon */
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.footer-icons .social-icon:hover {
+    background: var(--primary-pink); /* Mag-light pink kapag itinapat ang mouse */
+    transform: translateY(-3px);
+}
+/* In-adjust ang Submit button para maging kamukha ng See More button */
+.submit-btn-small {
+    background: var(--primary-pink);
+    color: white;
+    /* Kaparehong padding at lapad ng See More button */
+    padding: 12px 35px; 
+    border: none;
+    border-radius: 50px; /* Capsule shape */
+    font-weight: 600;
+    font-size: 16px; /* Same font size */
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(216, 27, 96, 0.2); /* May kaunting shadow para lumitaw */
+    font-family: 'Poppins', sans-serif;
+}
+
     </style>
 </head>  
 
@@ -285,13 +570,14 @@
 
     <header>  
         <div class="nav-container">
+            <a href="#home" class="logo">Portfolio.</a>
             <nav>  
                 <a href="#home">Home</a>  
                 <a href="#about">About</a>  
                 <a href="#skills">Skills</a>  
-                <a href="#projects">Projects</a>  
-                <a href="#Tutorials">Tutorials</a>  
-                <a href="#contact">Contact</a>  
+                <a href="#projects">Outputs</a> 
+                <a href="#Tutorials">Videos</a> 
+                <a href="#contact">Contact</a>
             </nav>
             <button class="mode-toggle" id="modeBtn">🌙</button>
         </div>
@@ -307,8 +593,7 @@
                 </div>
                 <i class="fa-solid fa-xmark" style="cursor:pointer" id="close-chat"></i>
             </div>
-            <div class="chat-messages" id="chat-messages">
-                </div>
+            <div class="chat-messages" id="chat-messages"></div>
             <div class="chat-input-area">
                 <input type="text" id="user-input" placeholder="Type your inquiry here...">
                 <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
@@ -322,18 +607,28 @@
             <div class="typing-text cursor-blink" id="typewriter"></div>
         </div>
         <p style="text-align:center;">  
-            Hi! I'm <b>Lena Bahi-an</b>, a BSIT student.   
+            It's me <b style="color: var(--primary-pink);">Lena Bahi-an</b>, a BSIT student.  
             Crafting innovative solutions through design, code, and creativity.   
-            Welcome to a space where ideas turn into experience.   
-        </p>  
+            Welcome to a space where ideas turn into experience.    
+            </p>  
+        <div class="home-actions">
+            <div class="social-links">
+                <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/lenabahian-commits/Lena-Bahi-an-" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
+            </div>
+            <a href="#about">
+                <button class="see-more-btn">See More About Me</button>
+            </a>
+        </div>
     </section>
 
-    <section id="about">  
-        <h2>About Me</h2>  
-        <p> A Bachelor of Science in Information Technology student at Central Philippines State University (CPSU). I consider myself a responsible and orderly person with a passion for coding, editing, and learning about emerging technologies.</p>  
+    <section id="about">
+    <h2 class="about-title">About Me</h2>
+   <p> A Bachelor of Science in Information Technology student at Central Philippines State University (CPSU). I consider myself a responsible and orderly person with a passion for coding, editing, and learning about emerging technologies.</p>  
         <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 20px 0;">  
         <div class="resume-container">  
-            <h3> My Professional Resume</h3>  
             <button onclick="handleResumeAction()" class="download-btn">📄 View & Download Resume</button>  
             <p><small>(Click to view in a new tab and auto-download)</small></p>  
         </div>  
@@ -382,7 +677,6 @@
             </div>
         </div>
     </section>
-
     <section id="Tutorials">
         <h2>Video Tutorials</h2>
         <div class="video-grid">
@@ -392,28 +686,40 @@
         </div>
     </section>
 
-    <section id="contact">  
-        <h2>Contact Me</h2>  
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lenabahian@gmail.com" target="_blank" class="contact-link">
-            <div class="contact-box"><i class="fa-solid fa-envelope"></i> <span>lenabahian@gmail.com</span></div>  
-        </a>
-
-        <a href="https://github.com/lenabahian-commits/Lena-Bahi-an-" target="_blank" class="contact-link">
-            <div class="contact-box"><i class="fa-brands fa-github"></i> <span>github.com/lenabahian-commits</span></div>  
-        </a>
-
-        <a href="https://www.facebook.com/lens.bahian" target="_blank" class="contact-link">
-            <div class="contact-box"><i class="fa-brands fa-facebook"></i> <span>Lens Catacio Bahian</span></div>  
-        </a>
-
-        <a href="javascript:void(0);" onclick="window.location.href='tel:+639923134253';" class="contact-link">
-            <div class="contact-box"><i class="fa-solid fa-phone"></i> <span>+63 992 313 4253</span></div>  
-        </a>
+   <section id="contact">
+    <h2 style="text-transform: none;">Contact Me</h2>
+    
+    <form class="contact-form">
+        <div class="form-row">
+            <div class="form-group">
+                <input type="text" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Last Name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="email" placeholder="Your Email Address" required>
+        </div>
+        <div class="form-group">
+            <textarea placeholder="Write your message here..." rows="4" required></textarea>
+        </div>
         
-        <button class="work-btn" onclick="window.location.href='mailto:lenabahian@gmail.com'">Work With Me</button>  
-    </section>
+        <div style="text-align: center; margin-top: 10px;">
+            <button type="submit" class="submit-btn-small">Submit</button>
+        </div>
+    </form>
+</section>
 
-    <footer><p>© 2026 <b>Bahi-an Portfolio</b> | BSIT-2B</p></footer>
+    <footer>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/lens.bahian" target="_blank" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/lenabahian-commits/Lena-Bahi-an-" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+        <p>© 2026 <b>Bahi-an Portfolio</b> | BSIT-2B</p>
+    </footer>
 
     <div id="imageModal" class="modal" onclick="this.style.display='none'">  
         <img class="modal-content" id="imgFull">  
@@ -461,10 +767,7 @@
         });
 
         const textElement = document.getElementById('typewriter');
-        const words = [
-            "Welcome to My Portfolio!", 
-            "I am a BSIT student."
-        ];
+        const words = ["Welcome", "I am a BSIT student."];
         let wordIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 150;
 
         function type() {
@@ -532,7 +835,7 @@
 
         document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-        /* ===== CHATBOT LOGIC (English Only) ===== */
+        /* ===== CHATBOT LOGIC ===== */
         const chatBtn = document.getElementById('chat-button');
         const chatWin = document.getElementById('chat-window');
         const closeChat = document.getElementById('close-chat');
@@ -584,7 +887,7 @@
                     response = "Lena is proficient in Front-end Development (HTML/CSS/JS) and UI/UX tools like Figma and Canva. She also has experience with video editing.";
                 } 
                 else if (lowerText.includes("projects")) {
-                    response = "Lena has worked on several projects, including the 'Fresh Bites Kitchen' ordering system. Check the Projects section for details!";
+                    response = "Lena has worked on several projects. Check the Projects section for details!";
                 } 
                 else if (lowerText.includes("resume") || lowerText.includes("cv")) {
                     response = "You can view and download Lena's professional resume in the 'About' section.";
