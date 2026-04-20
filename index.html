@@ -12,32 +12,32 @@
         :root {
             --bg-gradient: radial-gradient(at 0% 0%, #fce4ec 0%, transparent 50%), 
                            radial-gradient(at 100% 0%, #f8bbd0 0%, transparent 50%), 
-                           radial-gradient(at 100% 100%, #ff80ab 0%, transparent 50%), 
+                           radial-gradient(at 100% 100%, #ad145733 0%, transparent 50%), 
                            radial-gradient(at 0% 100%, #fce4ec 0%, transparent 50%);
             --bg-fallback: #fce4ec;
             --section-bg: rgba(255, 255, 255, 0.85); 
             --glass-border: rgba(255, 255, 255, 0.6);
             --text-color: #333;
-            --primary-pink: #D81B60; 
+            --primary-pink: #ad1457; 
             --nav-bg: #000000; 
             --icon-bg: rgba(252, 228, 236, 0.9); 
             --box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            --hover-glow: rgba(216, 27, 96, 0.2); 
+            --hover-glow: rgba(173, 20, 87, 0.2); 
         }
 
         body.dark-mode {
             --bg-gradient: radial-gradient(at 0% 0%, #2c3e50 0%, transparent 50%), 
                            radial-gradient(at 100% 0%, #000000 0%, transparent 50%), 
-                           radial-gradient(at 100% 100%, #d81b6033 0%, transparent 50%);
+                           radial-gradient(at 100% 100%, #ad145733 0%, transparent 50%);
             --bg-fallback: #000000;
             --section-bg: rgba(26, 26, 26, 0.9);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-color: #fce4ec;
-            --primary-pink: #D81B60; 
+            --primary-pink: #ad1457; 
             --nav-bg: #000000;
             --icon-bg: rgba(255, 255, 255, 0.05);
             --box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-            --hover-glow: rgba(216, 27, 96, 0.4); 
+            --hover-glow: rgba(173, 20, 87, 0.4); 
         }
 
         /* ===== TECH PINK NODES STYLE ===== */
@@ -97,11 +97,12 @@
         .typing-text {
             font-size: 24px; 
             font-weight: 800; 
-            color: var(--primary-pink);
+            color: var(--primary-pink); 
             border-right: 3px solid var(--primary-pink); 
             white-space: nowrap; 
             overflow: hidden;
             display: inline-block;
+            text-shadow: 0 0 10px rgba(173, 20, 87, 0.3); 
         }
         .cursor-blink {
             animation: blink 0.75s step-end infinite;
@@ -119,7 +120,7 @@
         header {  
             background: var(--nav-bg); 
             color: white; 
-            padding: 15px 0; 
+            padding: 8px 0; 
             position: sticky; 
             top: 0; 
             z-index: 1000; 
@@ -129,27 +130,28 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            width: 95%; 
+            width: 98%; 
             max-width: 1200px; 
             margin: 0 auto; 
         }
         .logo {
-            font-size: 24px;
+            font-size: 18px; 
             font-weight: 800;
             color: var(--primary-pink);
             text-decoration: none;
+            padding-left: 2px;
         }
         nav { 
             display: flex; 
-            gap: 15px; 
+            gap: 4px; 
             align-items: center;
         }  
         nav a { 
             color: #ffffff; 
             text-decoration: none; 
             font-weight: 400; 
-            font-size: 15px; 
-            padding: 5px 10px; 
+            font-size: 12px; 
+            padding: 4px 5px; 
             transition: 0.3s; 
         }
         nav a:hover { 
@@ -160,8 +162,9 @@
             color: white; 
             border: none; 
             cursor: pointer; 
-            font-size: 18px; 
-            margin-left: 10px;
+            font-size: 14px; 
+            margin-left: 2px;
+            padding: 5px;
         }
 
         /* ===== SECTIONS ===== */  
@@ -187,7 +190,6 @@
             border: 1px solid var(--primary-pink);
         }
 
-        /* PROFILE ANIMATION (FLOATING) */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -223,10 +225,11 @@
         .download-btn:hover { opacity: 0.9; transform: translateY(-3px); box-shadow: 0 5px 15px var(--hover-glow); }  
 
         .centered-skill-text { text-align: center; margin-bottom: 25px; font-size: 16px; font-weight: 500; }
+        
         .platform-list { display: flex; justify-content: center; gap: 12px; flex-wrap: nowrap; padding: 15px 0; overflow-x: auto; }  
-        .platform-item { text-align: center; flex: 0 0 auto; }
+        .platform-item { text-align: center; flex: 0 0 auto; text-decoration: none; color: inherit; }
         .platform-icon-wrapper { background-color: var(--icon-bg); padding: 8px; border-radius: 12px; transition: 0.3s; }  
-        .platform-icon-wrapper:hover { transform: scale(1.1); background-color: #fff; }
+        .platform-icon-wrapper:hover { transform: scale(1.1); background-color: #fff; box-shadow: 0 5px 15px var(--hover-glow); }
         .platform-item img { width: 45px; height: 45px; border-radius: 8px; }  
         .platform-item p { font-size: 11px; font-weight: 600; margin-top: 5px; }
 
@@ -241,8 +244,7 @@
             border-radius: 15px; 
             padding: 15px; 
             width: 260px;
-            transform-style: preserve-3d;
-            transform: perspective(1000px);
+            transform-style: perspective(1000px);
             transition: 0.3s ease; 
         }  
         .project-item:hover {
@@ -256,12 +258,8 @@
             object-fit: cover; 
             background: #fff; 
             cursor: zoom-in;
-            transform: translateZ(20px);
         }  
-        .project-item p {
-            transform: translateZ(10px);
-            font-weight: 600;
-        }
+        .project-item p { font-weight: 600; }
         
         .filter-item { transition: all 0.3s ease; }
 
@@ -278,289 +276,89 @@
         .video-wrapper:hover .video-item { border-color: var(--primary-pink); box-shadow: 0 10px 25px var(--hover-glow); }
 
         /* ===== CONTACT FORM STYLES ===== */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .form-row {
-            display: flex;
-            gap: 15px;
-        }
-        .form-group {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
+        .contact-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+        .form-row { display: flex; gap: 15px; }
+        .form-group { flex: 1; display: flex; flex-direction: column; }
         .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--glass-border);
-            border-radius: 10px;
-            background: var(--icon-bg);
-            color: var(--text-color);
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            transition: 0.3s;
-            box-sizing: border-box;
+            width: 100%; padding: 12px 15px; border: 2px solid var(--glass-border);
+            border-radius: 10px; background: var(--icon-bg); color: var(--text-color);
+            font-family: 'Poppins', sans-serif; font-size: 14px; transition: 0.3s; box-sizing: border-box;
         }
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--primary-pink);
-            background: #fff;
-            box-shadow: 0 0 10px var(--hover-glow);
-        }
-        .submit-btn {
-            background: var(--primary-pink);
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(216, 27, 96, 0.4);
-            opacity: 0.9;
+        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--primary-pink); background: #fff; box-shadow: 0 0 10px var(--hover-glow); }
+        .submit-btn-small {
+            background: var(--primary-pink); color: white; padding: 12px 35px; 
+            border: none; border-radius: 50px; font-weight: 600; font-size: 16px;
+            cursor: pointer; transition: 0.3s; display: inline-block;
+            box-shadow: 0 4px 15px rgba(173, 20, 87, 0.2); font-family: 'Poppins', sans-serif;
         }
 
         /* ===== FOOTER & SOCIAL ICONS ===== */
-        footer { 
-            text-align: center; 
-            padding: 40px 25px; 
-            background: var(--nav-bg); 
-            color: white; 
-            margin-top: 40px; 
-        }
-
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 15px; 
-            margin-bottom: 20px;
-        }
-
+        footer { text-align: center; padding: 40px 25px; background: var(--nav-bg); color: white; margin-top: 40px; }
+        .footer-socials { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
         .social-icon {
-            font-size: 18px; 
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            transition: 0.3s;
-            text-decoration: none;
+            font-size: 18px; color: white; background: rgba(255, 255, 255, 0.1);
+            width: 40px; height: 40px; display: flex; justify-content: center; align-items: center;
+            border-radius: 50%; transition: 0.3s; text-decoration: none;
         }
-
-        .social-icon:hover {
-            background: var(--primary-pink);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px var(--hover-glow);
-        }
+        .social-icon:hover { background: var(--primary-pink); transform: translateY(-3px); box-shadow: 0 5px 15px var(--hover-glow); }
 
         .modal { display: none; position: fixed; z-index: 3000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }  
         .modal-content { margin: auto; display: block; max-width: 90%; max-height: 80vh; border-radius: 10px; }  
         #modal-caption { text-align: center; color: #ccc; padding: 15px; font-weight: bold; }
 
-        /* ===== CHATBOT STYLES ===== */
-        #chat-widget {
-            position: fixed; bottom: 25px; right: 25px;
-            z-index: 5000; font-family: 'Poppins', sans-serif;
-        }
+        /* ===== CHATBOT ===== */
+        #chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Poppins', sans-serif; }
         #chat-button {
-            width: 60px; height: 60px; background: var(--primary-pink);
+            width: 55px; height: 55px; background: var(--primary-pink);
             border: none; border-radius: 50%; color: white;
-            font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            font-size: 22px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: 0.3s; display: flex; justify-content: center; align-items: center;
         }
         #chat-window {
-            display: none; width: 320px; height: 450px;
+            display: none; width: 300px; height: 420px;
             background: var(--section-bg); backdrop-filter: blur(15px);
             border: 2px solid var(--primary-pink); border-radius: 20px;
-            position: absolute; bottom: 80px; right: 0;
+            position: absolute; bottom: 70px; right: 0;
             flex-direction: column; overflow: hidden; box-shadow: var(--box-shadow);
         }
         .chat-header {
-            background: var(--nav-bg); color: white; padding: 12px 15px;
+            background: var(--nav-bg); color: white; padding: 10px 15px;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .chat-header-info { display: flex; align-items: center; gap: 10px; }
-        .chat-header-info img { width: 30px; height: 30px; border-radius: 50%; border: 1px solid white; object-fit: cover; }
-        
-        .chat-messages {
-            flex: 1; padding: 15px; overflow-y: auto;
-            display: flex; flex-direction: column; gap: 12px;
-        }
+        .chat-header-info { display: flex; align-items: center; gap: 8px; }
+        .chat-header-info img { width: 28px; height: 28px; border-radius: 50%; border: 1px solid white; object-fit: cover; }
+        .chat-messages { flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
         .msg-wrapper { display: flex; flex-direction: column; width: 100%; }
-        .msg { padding: 8px 12px; border-radius: 15px; max-width: 80%; font-size: 13px; line-height: 1.4; }
+        .msg { padding: 8px 12px; border-radius: 15px; max-width: 80%; font-size: 12px; line-height: 1.4; }
         .msg.bot { background: var(--icon-bg); color: var(--text-color); align-self: flex-start; border-bottom-left-radius: 2px; }
         .msg.user { background: var(--primary-pink); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-        .bot-img-small { width: 22px; height: 22px; border-radius: 50%; margin-bottom: 4px; border: 1px solid var(--primary-pink); object-fit: cover; }
-        
-        .chat-input-area {
-            padding: 15px; border-top: 1px solid var(--glass-border);
-            display: flex; gap: 8px; background: rgba(255,255,255,0.1);
+        .bot-img-small { width: 20px; height: 20px; border-radius: 50%; margin-bottom: 4px; border: 1px solid var(--primary-pink); object-fit: cover; }
+        .chat-input-area { padding: 12px; border-top: 1px solid var(--glass-border); display: flex; gap: 8px; background: rgba(255,255,255,0.1); }
+        #user-input { flex: 1; border: 1px solid var(--primary-pink); border-radius: 20px; padding: 6px 12px; outline: none; background: transparent; color: var(--text-color); font-size: 12px; }
+        #send-btn { background: var(--primary-pink); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+
+        .home-actions { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; }
+        .social-links { display: flex; justify-content: center; gap: 12px; }
+        .social-btn {
+            width: 35px; height: 35px; border: 1.5px solid var(--primary-pink); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary-pink); text-decoration: none; font-size: 15px; transition: 0.3s;
         }
-        #user-input {
-            flex: 1; border: 1px solid var(--primary-pink); border-radius: 20px;
-            padding: 8px 15px; outline: none; background: transparent; color: var(--text-color);
+        .social-btn:hover { background: var(--primary-pink); color: white; }
+        .see-more-btn {
+            background: var(--primary-pink); color: white; border: none;
+            padding: 10px 25px; border-radius: 50px; 
+            font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; transition: 0.3s;
         }
-        #send-btn {
-            background: var(--primary-pink); border: none; color: white;
-            width: 35px; height: 35px; border-radius: 50%; cursor: pointer;
-        }
+        .see-more-btn:hover { opacity: 0.9; transform: scale(1.05); }
 
         @media (max-width: 600px) {
-            .form-row { flex-direction: column; gap: 15px; }
+            .nav-container { width: 99%; }
+            nav a { font-size: 10px; padding: 4px 3px; }
+            .logo { font-size: 14px; }
+            .mode-toggle { font-size: 12px; }
+            .form-row { flex-direction: column; gap: 12px; }
         }
-    /* Container para naka-center lahat */
-.home-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-/* Flexbox para sa icons */
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-}
-
-/* Styling para sa bilog na icons */
-.social-btn {
-    width: 35px; /* Size ng bilog */
-    height: 35px;
-    border: 1.5px solid #D81B60; /* Kulay ng border */
-    border-radius: 50%; /* Gagawa ng perfect circle */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #D81B60; /* Kulay ng icon */
-    text-decoration: none;
-    font-size: 15px; /* Size ng icon sa loob */
-    transition: 0.3s;
-}
-
-/* Hover effect */
-.social-btn:hover {
-    background: #D81B60;
-    color: white;
-}
-
-/* Styling para sa Button */
-.see-more-btn {
-    background: #D81B60;
-    color: white;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 50px; /* Capsule shape */
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.see-more-btn:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-}
-
-    /* ===== CONTACT FORM STYLES ===== */
-#contact h2 {
-    font-size: 22px; /* Saktong laki lang */
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 450px; /* Mas pinaliit ang form para mas compact */
-    margin: 0 auto;
-}
-
-.form-row {
-    display: flex;
-    gap: 12px;
-}
-
-.contact-form input, 
-.contact-form textarea {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid rgba(216, 27, 96, 0.2);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.6);
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    color: var(--text-color);
-    box-sizing: border-box;
-    transition: 0.3s;
-}
-
-.contact-form input:focus, 
-.contact-form textarea:focus {
-    outline: none;
-    border-color: var(--primary-pink);
-    background: #fff;
-}
-
-}
-
-@media (max-width: 600px) {
-    .form-row {
-        flex-direction: column;
-    }
-}
-    
-/* Styling para sa Icons bago ang Footer */
-.footer-icons .social-icon {
-    background: #ad1457; /* Dark Pink background */
-    color: white; /* Puting icon */
-    font-size: 18px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 5px;
-    transition: 0.3s;
-}
-
-/* Hover effect */
-.footer-icons .social-icon:hover {
-    background: var(--primary-pink); /* Mag-light pink kapag itinapat ang mouse */
-    transform: translateY(-3px);
-}
-/* In-adjust ang Submit button para maging kamukha ng See More button */
-.submit-btn-small {
-    background: var(--primary-pink);
-    color: white;
-    /* Kaparehong padding at lapad ng See More button */
-    padding: 12px 35px; 
-    border: none;
-    border-radius: 50px; /* Capsule shape */
-    font-weight: 600;
-    font-size: 16px; /* Same font size */
-    cursor: pointer;
-    transition: 0.3s;
-    display: inline-block;
-    box-shadow: 0 4px 15px rgba(216, 27, 96, 0.2); /* May kaunting shadow para lumitaw */
-    font-family: 'Poppins', sans-serif;
-}
-
     </style>
 </head>  
 
@@ -589,13 +387,13 @@
             <div class="chat-header">
                 <div class="chat-header-info">
                     <img src="Cn.png" alt="Lena Assistant">
-                    <span style="font-size: 14px; font-weight: 600;">Lena's Virtual Assistant</span>
+                    <span style="font-size: 13px; font-weight: 600;">Lena's Virtual Assistant</span>
                 </div>
                 <i class="fa-solid fa-xmark" style="cursor:pointer" id="close-chat"></i>
             </div>
             <div class="chat-messages" id="chat-messages"></div>
             <div class="chat-input-area">
-                <input type="text" id="user-input" placeholder="Type your inquiry here...">
+                <input type="text" id="user-input" placeholder="Type here...">
                 <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
@@ -607,26 +405,25 @@
             <div class="typing-text cursor-blink" id="typewriter"></div>
         </div>
         <p style="text-align:center;">  
-            It's me <b style="color: var(--primary-pink);">Lena Bahi-an</b>, a BSIT student.  
-            Crafting innovative solutions through design, code, and creativity.   
+            It's me <b style="color: var(--primary-pink);">Lena Bahi-an</b>, a BSIT student.
+            Crafting innovative solutions through design, code, and creativity.
             Welcome to a space where ideas turn into experience.    
             </p>  
         <div class="home-actions">
             <div class="social-links">
-                <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/lens.bahian" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" class="social-btn"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
                 <a href="https://github.com/lenabahian-commits/Lena-Bahi-an-" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
             </div>
-            <a href="#about">
-                <button class="see-more-btn">See More About Me</button>
-            </a>
+            <a href="#about"><button class="see-more-btn">See More About Me</button></a>
         </div>
     </section>
 
+    
     <section id="about">
-    <h2 class="about-title">About Me</h2>
-   <p> A Bachelor of Science in Information Technology student at Central Philippines State University (CPSU). I consider myself a responsible and orderly person with a passion for coding, editing, and learning about emerging technologies.</p>  
+        <h2 class="about-title">About Me</h2>
+        <p>A Bachelor of Science in Information Technology student at Central Philippines State University (CPSU). I consider myself a responsible and orderly person with a passion for coding, editing, and learning about emerging technologies.</p>  
         <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 20px 0;">  
         <div class="resume-container">  
             <button onclick="handleResumeAction()" class="download-btn">📄 View & Download Resume</button>  
@@ -638,16 +435,15 @@
         <h2>Skills & Tools</h2>  
         <div class="centered-skill-text">🎬 Video & Photo Editing | 💻 Coding & Slide Presentations</div>  
         <div class="platform-list">  
-            <div class="platform-item"><div class="platform-icon-wrapper"><img src="Addob.png" alt="Premiere"></div><p>Premiere</p></div>  
-            <div class="platform-item"><div class="platform-icon-wrapper"><img src="Fig.png" alt="Figma"></div><p>Figma</p></div>  
-            <div class="platform-item"><div class="platform-icon-wrapper"><img src="Add.png" alt="Photoshop"></div><p>Photoshop</p></div>  
-            <div class="platform-item"><div class="platform-icon-wrapper"><img src="Canv.png" alt="Canva"></div><p>Canva</p></div>  
+            <a href="https://www.adobe.com/products/premiere.html" target="_blank" class="platform-item"><div class="platform-icon-wrapper"><img src="Addob.png" alt="Premiere"></div><p>Premiere</p></a>  
+            <a href="https://www.figma.com/" target="_blank" class="platform-item"><div class="platform-icon-wrapper"><img src="Fig.png" alt="Figma"></div><p>Figma</p></a>  
+            <a href="https://www.adobe.com/products/photoshop.html" target="_blank" class="platform-item"><div class="platform-icon-wrapper"><img src="Add.png" alt="Photoshop"></div><p>Photoshop</p></a>  
+            <a href="https://www.canva.com/" target="_blank" class="platform-item"><div class="platform-icon-wrapper"><img src="Canv.png" alt="Canva"></div><p>Canva</p></a>  
         </div>  
     </section>
 
     <section id="projects">  
         <h2>Outputs</h2>  
-        
         <div class="filter-buttons">
             <button class="filter-btn active" onclick="filterProjects('all')">All</button>
             <button class="filter-btn" onclick="filterProjects('graphics')">Graphics</button>
@@ -656,9 +452,9 @@
         </div>
 
         <div class="project-grid filter-item graphics">  
-            <div class="project-item" data-tilt><img src="Ss.jpg" alt="Banner"><p>Banner</p></div>  
-            <div class="project-item" data-tilt><img src="Ts.png" alt="T-Shirt Layout"><p>T-Shirt Layout</p></div>  
-            <div class="project-item" data-tilt><img src="Sh.png" alt="Chessboard"><p>Chessboard</p></div>  
+            <div class="project-item"><img src="Ss.jpg" alt="Banner"><p>Banner</p></div>  
+            <div class="project-item"><img src="Ts.png" alt="T-Shirt Layout"><p>T-Shirt Layout</p></div>  
+            <div class="project-item"><img src="Sh.png" alt="Chessboard"><p>Chessboard</p></div>  
         </div>  
 
         <ul class="output-list filter-item links">  
@@ -671,12 +467,13 @@
             <hr style="border: 0; height: 1px; background: #f8bbd0; margin: 40px 0;">  
             <h2 class="cert-title">Certificate of participation in the IT seminar</h2>  
             <div class="project-grid">  
-                <div class="project-item" data-tilt><img src="Cg.jpg" style="object-fit:contain;" alt="IT Seminar"><p>IT Seminar</p></div>  
-                <div class="project-item" data-tilt><img src="Cf.jpg" style="object-fit:contain;" alt="Integrative Foundation"><p>Integrative Foundation</p></div>  
-                <div class="project-item" data-tilt><img src="Fc.jpg" style="object-fit:contain;" alt="CISCO Networking"><p>CISCO Networking</p></div>  
+                <div class="project-item"><img src="Cg.jpg" style="object-fit:contain;" alt="IT Seminar"><p>IT Seminar</p></div>  
+                <div class="project-item"><img src="Cf.jpg" style="object-fit:contain;" alt="Integrative Foundation"><p>Integrative Foundation</p></div>  
+                <div class="project-item"><img src="Fc.jpg" style="object-fit:contain;" alt="CISCO Networking"><p>CISCO Networking</p></div>  
             </div>
         </div>
     </section>
+
     <section id="Tutorials">
         <h2>Video Tutorials</h2>
         <div class="video-grid">
@@ -686,30 +483,18 @@
         </div>
     </section>
 
-   <section id="contact">
-    <h2 style="text-transform: none;">Contact Me</h2>
-    
-    <form class="contact-form">
-        <div class="form-row">
-            <div class="form-group">
-                <input type="text" placeholder="First Name" required>
+    <section id="contact">
+        <h2 style="text-transform: none;">Contact Me</h2>
+        <form class="contact-form">
+            <div class="form-row">
+                <div class="form-group"><input type="text" placeholder="First Name" required></div>
+                <div class="form-group"><input type="text" placeholder="Last Name" required></div>
             </div>
-            <div class="form-group">
-                <input type="text" placeholder="Last Name" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <input type="email" placeholder="Your Email Address" required>
-        </div>
-        <div class="form-group">
-            <textarea placeholder="Write your message here..." rows="4" required></textarea>
-        </div>
-        
-        <div style="text-align: center; margin-top: 10px;">
-            <button type="submit" class="submit-btn-small">Submit</button>
-        </div>
-    </form>
-</section>
+            <div class="form-group"><input type="email" placeholder="Your Email Address" required></div>
+            <div class="form-group"><textarea placeholder="Write your message here..." rows="4" required></textarea></div>
+            <div style="text-align: center; margin-top: 10px;"><button type="submit" class="submit-btn-small">Submit</button></div>
+        </form>
+    </section>
 
     <footer>
         <div class="footer-socials">
@@ -721,13 +506,9 @@
         <p>© 2026 <b>Bahi-an Portfolio</b> | BSIT-2B</p>
     </footer>
 
-    <div id="imageModal" class="modal" onclick="this.style.display='none'">  
-        <img class="modal-content" id="imgFull">  
-        <div id="modal-caption"></div>  
-    </div>
+    <div id="imageModal" class="modal" onclick="this.style.display='none'"><img class="modal-content" id="imgFull"><div id="modal-caption"></div></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-
     <script>  
         function handleResumeAction() {
             const resumeUrl = 'Lan.pdf';
@@ -742,8 +523,7 @@
 
         function initTechNodes() {
             const container = document.getElementById('nodes-container');
-            const nodeCount = 35;
-            for (let i = 0; i < nodeCount; i++) {
+            for (let i = 0; i < 35; i++) {
                 const node = document.createElement('div');
                 node.className = 'node';
                 node.style.left = Math.random() * 100 + 'vw';
@@ -761,13 +541,10 @@
         };
 
         const cursor = document.querySelector('.cursor-dot');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+        document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
 
         const textElement = document.getElementById('typewriter');
-        const words = ["Welcome", "I am a BSIT student."];
+        const words = ["Welcome to my portfolio", "I am a BSIT student."];
         let wordIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 150;
 
         function type() {
@@ -781,61 +558,31 @@
                 charIndex++;
                 typeSpeed = 150;
             }
-
-            if (!isDeleting && charIndex === currentWord.length) {
-                isDeleting = true;
-                typeSpeed = 2000;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 500;
-            }
+            if (!isDeleting && charIndex === currentWord.length) { isDeleting = true; typeSpeed = 2000; } 
+            else if (isDeleting && charIndex === 0) { isDeleting = false; wordIndex = (wordIndex + 1) % words.length; typeSpeed = 500; }
             setTimeout(type, typeSpeed);
         }
         document.addEventListener('DOMContentLoaded', type);
 
-        VanillaTilt.init(document.querySelectorAll(".project-item"), {
-            max: 15, speed: 400, glare: true, "max-glare": 0.3,
-        });
+        VanillaTilt.init(document.querySelectorAll(".project-item"), { max: 15, speed: 400 });
 
         function filterProjects(category) {
             const filterItems = document.querySelectorAll('.filter-item');
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             if(event) event.target.classList.add('active');
-
-            filterItems.forEach(item => {
-                if (category === 'all' || item.classList.contains(category)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+            filterItems.forEach(item => { item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none'; });
         }
 
         const projectImages = document.querySelectorAll('.project-item img');  
         const modal = document.getElementById("imageModal");  
         const modalImg = document.getElementById("imgFull");  
-        projectImages.forEach(img => {  
-            img.onclick = function() { modal.style.display = "block"; modalImg.src = this.src; }  
-        });
+        projectImages.forEach(img => { img.onclick = function() { modal.style.display = "block"; modalImg.src = this.src; } });
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { 
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal'); 
-                }
-            });
-        }, observerOptions);
-
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('reveal'); }); }, { threshold: 0.1 });
         document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-        /* ===== CHATBOT LOGIC ===== */
+        /* CHATBOT LOGIC */
         const chatBtn = document.getElementById('chat-button');
         const chatWin = document.getElementById('chat-window');
         const closeChat = document.getElementById('close-chat');
@@ -850,59 +597,33 @@
             const wrapper = document.createElement('div');
             wrapper.className = "msg-wrapper";
             wrapper.style.alignItems = (sender === 'user') ? "flex-end" : "flex-start";
-
             if (sender === 'bot') {
                 const bImg = document.createElement('img');
-                bImg.src = "Cn.png";
-                bImg.className = "bot-img-small";
-                wrapper.appendChild(bImg);
+                bImg.src = "Cn.png"; bImg.className = "bot-img-small"; wrapper.appendChild(bImg);
             }
-
             const msgDiv = document.createElement('div');
-            msgDiv.className = `msg ${sender}`;
-            msgDiv.innerText = text;
-            
-            wrapper.appendChild(msgDiv);
-            chatMessages.appendChild(wrapper);
+            msgDiv.className = `msg ${sender}`; msgDiv.innerText = text;
+            wrapper.appendChild(msgDiv); chatMessages.appendChild(wrapper);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
         addMessage("Hello! I am Lena's AI Assistant. How may I help you explore her portfolio today?", 'bot');
 
         function handleChat() {
-            const text = userInput.value.trim();
-            if (!text) return;
-
-            addMessage(text, 'user');
-            userInput.value = '';
-
+            const text = userInput.value.trim(); if (!text) return;
+            addMessage(text, 'user'); userInput.value = '';
             setTimeout(() => {
-                let response = "I'm sorry, I didn't quite catch that. You can reach Lena directly at lenabahian@gmail.com for more specific inquiries!";
+                let response = "I'm sorry, I didn't quite catch that. You can reach Lena directly at lenabahian@gmail.com!";
                 const lowerText = text.toLowerCase();
-
-                if (lowerText.includes("hello") || lowerText.includes("hi") || lowerText.includes("hey")) {
-                    response = "Greetings! I can provide information about Lena's skills, academic background, or specific projects. What would you like to know?";
-                } 
-                else if (lowerText.includes("skills") || lowerText.includes("tools") || lowerText.includes("tech")) {
-                    response = "Lena is proficient in Front-end Development (HTML/CSS/JS) and UI/UX tools like Figma and Canva. She also has experience with video editing.";
-                } 
-                else if (lowerText.includes("projects")) {
-                    response = "Lena has worked on several projects. Check the Projects section for details!";
-                } 
-                else if (lowerText.includes("resume") || lowerText.includes("cv")) {
-                    response = "You can view and download Lena's professional resume in the 'About' section.";
-                } 
-                else if (lowerText.includes("contact") || lowerText.includes("email")) {
-                    response = "You can contact Lena via email at lenabahian@gmail.com or through the links in the Contact section.";
-                }
-
+                if (lowerText.includes("hello") || lowerText.includes("hi")) response = "Greetings! I can provide information about Lena's skills, academic background, or projects. What would you like to know?";
+                else if (lowerText.includes("skills")) response = "Lena is proficient in Front-end Development (HTML/CSS/JS) and UI/UX tools like Figma and Canva.";
+                else if (lowerText.includes("projects")) response = "Lena has worked on several projects. Check the Outputs section for details!";
+                else if (lowerText.includes("contact")) response = "You can contact Lena via email at lenabahian@gmail.com or through her social links!";
                 addMessage(response, 'bot');
             }, 800);
         }
-
         sendBtn.onclick = handleChat;
         userInput.onkeypress = (e) => { if(e.key === 'Enter') handleChat(); };
-
     </script>
 </body>  
 </html>
