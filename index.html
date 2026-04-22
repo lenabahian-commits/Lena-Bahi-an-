@@ -219,66 +219,81 @@
             border: 1px solid rgba(173, 20, 87, 0.4);
         }
 
-        /* ===== CONTACT STYLES ===== */
-        .contact-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-width: 450px;
-            margin: 0 auto;
-        }
+        /* Container ng buong Contact Section */
+.contact-card-container {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 340px;
+    margin: auto;
+}
 
-        .contact-card {
-            background: #FCE4EC; 
-            border-radius: 12px;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-            color: #333;
-            transition: 0.3s ease;
-            border: 1px solid rgba(194, 24, 91, 0.1);
-        }
+.contact-header {
+    color: #b01e51;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
 
-        .contact-card:hover {
-            background: #F8BBD0;
-            transform: scale(1.02);
-            border-color: #C2185B;
-        }
+/* Grid para sa Icons */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
 
-        .contact-card i {
-            font-size: 20px;
-            color: #C2185B; 
-            width: 30px;
-            text-align: center;
-        }
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background: #fff0f6; 
+    border-radius: 15px;
+    text-decoration: none;
+    color: #b01e51;
+    transition: 0.3s;
+}
 
-        .contact-card span {
-            font-size: 14px;
-            font-weight: 500;
-        }
+.contact-item i {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
 
-        .work-with-me-btn {
-            background: var(--primary-pink); 
-            color: white;
-            border: none;
-            padding: 14px 45px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 25px;
-            display: inline-block;
-            text-decoration: none;
-            box-shadow: 0 4px 12px var(--button-shadow-color);
-            transition: 0.3s;
-        }
+.contact-item span {
+    font-size: 11px;
+    font-weight: 600;
+}
 
-        .work-with-me-btn:hover {
-            background: #880E4F; 
-            transform: scale(1.05);
-            box-shadow: 0 6px 18px var(--hover-glow);
+/* Slim & Balanced Button (Link Type) */
+.work-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.work-with-me-btn {
+    background: #b01e51;
+    color: white;
+    padding: 8px 0;      /* Slim vertical padding */
+    width: 85%;          /* Sakto ang haba para sa layout */
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none; /* Tinatanggal ang underline */
+    display: inline-block;
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: 0 3px 10px rgba(176, 30, 81, 0.15);
+}
+
+.work-with-me-btn:hover {
+    background: #8e1841;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(176, 30, 81, 0.25);
+}
+
         }
 
         @keyframes float {
@@ -470,7 +485,8 @@
             box-shadow: 0 4px 15px var(--button-shadow-color);
         }
         .see-more-btn:hover { transform: scale(1.05); filter: brightness(1.1); box-shadow: 0 8px 20px var(--hover-glow); }
-        @media (max-width: 600px) {
+
+         @media (max-width: 600px) {
             .nav-container { width: 98%; padding: 0 5px; }
             nav { gap: 4px; padding-bottom: 2px; } 
             nav a { font-size: 10px; padding: 4px 3px; }
@@ -478,6 +494,52 @@
             .mode-toggle { width: 28px; height: 28px; font-size: 12px; }
             section { padding: 20px; width: 92%; }
         }
+        /* Card Container */
+.project-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px; /* Saktong space sa loob */
+    background: #fceef5; /* Light Pink background base sa picture */
+    border-radius: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s ease;
+    border: none;
+}
+
+/* Image Adjustment */
+.project-item img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+/* Title - Ginawang mas maliit */
+.cert-title-text {
+    color: #b01e51;
+    font-weight: 700;
+    font-size: 13px; /* Maliit na title */
+    margin: 5px 0 3px 0;
+    text-align: center;
+}
+
+/* Description - Extra Small */
+.cert-desc {
+    font-size: 10px; /* Small description sub-text */
+    color: #555;
+    line-height: 1.4;
+    text-align: center;
+    padding: 0 10px;
+    font-weight: 400;
+}
+
+/* Hover effect para maging interactive */
+.project-item:hover {
+    transform: translateY(-3px);
+    background: #f9e2ef;
+}
+
     </style>
 </head>  
 
@@ -543,11 +605,19 @@
         </p>  
         <div class="home-actions">
             <div class="social-links">
-                <a href="https://www.facebook.com/lens.bahian" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com" target="_blank" class="social-btn"><i class="fab fa-twitter"></i></a>
-                <a href="https://instagram.com" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com/lenabahian-commits/Lena-Bahi-an-" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
-            </div>
+    <a href="https://facebook.com/lens.bahian" target="_blank" class="social-btn">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" target="_blank" class="social-btn">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" target="_blank" class="social-btn">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://github.com/lenabahian-commits" target="_blank" class="social-btn">
+        <i class="fab fa-github"></i>
+    </a>
+</div>
             <button onclick="openResume()" class="see-more-btn">📄 Download CV</button>
         </div>
     </section>
@@ -592,16 +662,37 @@
             </ul>
         </div>
 
-        <div class="filter-item certificates">
-            <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--primary-pink), transparent); margin: 40px 0;">  
-            <h2 class="cert-title">Professional Milestones</h2>  
-            <div class="project-grid">  
-                <div class="project-item"><img src="Cg.jpg" style="object-fit:contain;" alt="IT Seminar"><p>Advanced IT Seminar</p></div>  
-                <div class="project-item"><img src="Cf.jpg" style="object-fit:contain;" alt="Integrative Tech Foundation"><p>Integrative Tech Foundation</p></div>  
-                <div class="project-item"><img src="Fc.jpg" style="object-fit:contain;" alt="CISCO Networking"><p>Cisco Network Solutions</p></div>
-                <div class="project-item"><img src="lenss.jpeg" style="object-fit:contain;" alt="Digital Safety and Security"><p>Digital Safety & Security</p></div>
-            </div>
+       <div class="filter-item certificates">
+    <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--primary-pink), transparent); margin: 40px 0;">  
+    <h2 class="cert-title">Professional Milestones</h2>  
+    <div class="project-grid">  
+        
+        <div class="project-item">
+            <img src="Cg.jpg" style="object-fit:contain;" alt="IT Seminar">
+            <p>Advanced IT Seminar</p>
+            <span class="cert-desc">Focused on emerging trends in cloud computing and modern IT infrastructure.</span>
+        </div>  
+
+        <div class="project-item">
+            <img src="Cf.jpg" style="object-fit:contain;" alt="Integrative Tech Foundation">
+            <p>Integrative Tech Foundation</p>
+            <span class="cert-desc">Core training on integrating software solutions with hardware systems.</span>
+        </div>  
+
+        <div class="project-item">
+            <img src="Fc.jpg" style="object-fit:contain;" alt="CISCO Networking">
+            <p>Cisco Network Solutions</p>
+            <span class="cert-desc">Comprehensive certification in network configuration and routing protocols.</span>
         </div>
+
+        <div class="project-item">
+            <img src="lenss.jpeg" style="object-fit:contain;" alt="Digital Safety and Security">
+            <p>Digital Safety & Security</p>
+            <span class="cert-desc">Specialized training in cybersecurity awareness and data protection practices.</span>
+        </div>
+
+    </div>
+</div>
    </section>
 
     <section id="Tutorials">
@@ -614,14 +705,38 @@
     </section>
 
     <section id="contact-section">
-        <h2>Contact Me</h2>
-        <div class="contact-container">
-            <a href="mailto:lenabahian@gmail.com" class="contact-card"><i class="fa-solid fa-envelope"></i><span>lenabahian@gmail.com</span></a>
-            <a href="https://github.com/lenabahian-commits" target="_blank" class="contact-card"><i class="fa-brands fa-github"></i><span>github.com/lenabahian-commits</span></a>
-            <a href="https://www.facebook.com/lens.bahian" target="_blank" class="contact-card"><i class="fa-brands fa-facebook"></i><span>Lens Catacio Bahian</span></a>
-            <a href="tel:+639923134253" class="contact-card"><i class="fa-solid fa-phone"></i><span>+63 992 313 4253</span></a>
-            <div style="text-align: center;"><a href="mailto:lenabahian@gmail.com" class="work-with-me-btn">Work With Me</a></div>
-        </div>
+        <div class="contact-card-container">
+    <h2 class="contact-header">Connect With Me</h2>
+    
+    <div class="contact-grid">
+        <a href="mailto:lenabahian@gmail.com" class="contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Email</span>
+        </a>
+
+        <a href="https://github.com/lenabahian-commits" target="_blank" class="contact-item">
+            <i class="fa-brands fa-github"></i>
+            <span>GitHub</span>
+        </a>
+
+        <a href="https://facebook.com/lenscataciobahian" target="_blank" class="contact-item">
+            <i class="fa-brands fa-facebook-f"></i>
+            <span>Facebook</span>
+        </a>
+
+        <a href="tel:+639923134253" class="contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>Call</span>
+        </a>
+    </div>
+
+    <div class="work-btn-container">
+        <a href="mailto:lenabahian@gmail.com?subject=Work Inquiry" class="work-with-me-btn">
+            Work With Me
+        </a>
+    </div>
+</div>
+
     </section>
 
     <footer>
@@ -754,4 +869,3 @@
     </script>
 </body>  
 </html>
-         
