@@ -219,59 +219,67 @@
             border: 1px solid rgba(173, 20, 87, 0.4);
         }
 
-        /* ===== IMPROVED CONTACT SECTION STYLES ===== */
-        #contact-icons-card {
-            background: white;
-            padding: 30px;
-            border-radius: 25px;
-            max-width: 400px;
-            margin: 0 auto 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .icon-group {
+        /* ===== CONTACT STYLES ===== */
+        .contact-container {
             display: flex;
-            justify-content: center;
-            gap: 25px;
-        }
-        .icon-group a {
-            color: var(--primary-pink);
-            font-size: 22px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .icon-group a:hover {
-            color: #ff4081;
-            transform: translateY(-5px);
+            flex-direction: column;
+            gap: 12px;
+            max-width: 450px;
+            margin: 0 auto;
         }
 
-        .contact-form { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; }
-        .form-row { display: flex; gap: 15px; }
-        .form-group { flex: 1; display: flex; flex-direction: column; }
-        .contact-form input, .contact-form textarea {
-            width: 100%; padding: 12px 18px; border: 1px solid #f1f1f1;
-            border-radius: 12px; background: #fdf2f7; color: #333;
-            font-family: 'Poppins', sans-serif; font-size: 14px; transition: 0.3s; box-sizing: border-box;
+        .contact-card {
+            background: #FCE4EC; 
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #333;
+            transition: 0.3s ease;
+            border: 1px solid rgba(194, 24, 91, 0.1);
         }
-        .contact-form input:focus, .contact-form textarea:focus { 
-            outline: none; 
-            border-color: var(--primary-pink); 
-            background: #fff; 
-            box-shadow: 0 0 10px var(--hover-glow); 
+
+        .contact-card:hover {
+            background: #F8BBD0;
+            transform: scale(1.02);
+            border-color: #C2185B;
         }
-        .submit-btn-small {
+
+        .contact-card i {
+            font-size: 20px;
+            color: #C2185B; 
+            width: 30px;
+            text-align: center;
+        }
+
+        .contact-card span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .work-with-me-btn {
             background: var(--primary-pink); 
-            color: white; 
-            padding: 10px 20px; 
-            border: none; 
-            border-radius: 50px; 
-            font-weight: 600; 
-            font-size: 13px;
-            cursor: pointer; 
+            color: white;
+            border: none;
+            padding: 14px 45px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 25px;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 12px var(--button-shadow-color);
             transition: 0.3s;
-            width: auto; 
-            min-width: 150px;
         }
-        .submit-btn-small:hover { transform: scale(1.05); background: #880e4f; }
+
+        .work-with-me-btn:hover {
+            background: #880E4F; 
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px var(--hover-glow);
+        }
 
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -291,28 +299,6 @@
             transition: 0.5s;
         }  
         .profile-pic img:hover { transform: scale(1.05) rotate(2deg); }
-
-        .resume-container { text-align: center; margin-top: 30px; }
-        .download-btn { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 12px; 
-            background: var(--primary-pink); 
-            color: white; 
-            border: none;
-            cursor: pointer;
-            padding: 15px 40px; 
-            border-radius: 50px; 
-            font-weight: 600; 
-            font-family: 'Poppins', sans-serif;
-            transition: 0.3s; 
-            box-shadow: 0 4px 15px var(--button-shadow-color);
-        }  
-        .download-btn:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 8px 25px var(--hover-glow); 
-            filter: brightness(1.1);
-        }  
 
         .centered-skill-text { text-align: center; margin-bottom: 30px; font-size: 16px; font-weight: 500; opacity: 0.9; }
         .platform-list { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 15px 0; }  
@@ -368,7 +354,7 @@
         .video-wrapper:hover .video-item { border-color: var(--primary-pink); box-shadow: 0 10px 30px var(--hover-glow); }
         .video-wrapper p { margin-top: 12px; font-weight: 600; font-size: 14px; }
 
-        /* ===== FOOTER & SOCIAL ICONS ===== */
+        /* ===== FOOTER ===== */
         footer { 
             text-align: center; 
             padding: 50px 25px; 
@@ -377,14 +363,6 @@
             margin-top: 50px; 
             border-top: 3px solid var(--primary-pink); 
         }
-        .footer-socials { display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; }
-        .social-icon {
-            font-size: 20px; color: white; background: rgba(255, 255, 255, 0.05);
-            width: 45px; height: 45px; display: flex; justify-content: center; align-items: center;
-            border-radius: 50%; transition: 0.4s; text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .social-icon:hover { background: var(--primary-pink); transform: translateY(-5px) rotate(360deg); box-shadow: 0 5px 20px var(--hover-glow); border-color: transparent; }
 
         /* ===== RESUME MODAL STYLES ===== */
         #resume-modal {
@@ -395,6 +373,7 @@
             width: 100%; height: 100%; 
             background: rgba(0,0,0,0.9);
             flex-direction: column;
+            align-items: center;
         }
         .resume-header {
             background: #1a1a1a;
@@ -403,6 +382,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+            box-sizing: border-box;
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         .resume-header-actions { display: flex; gap: 15px; align-items: center; }
@@ -419,17 +400,27 @@
             cursor: pointer;
         }
         .resume-action-btn:hover { background: #880e4f; }
-        #resume-frame {
+        
+        /* ADJUSTED: Container for the Resume Image */
+        .resume-content-container {
             flex: 1;
             width: 100%;
-            border: none;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        #resume-img-display {
+            max-width: 90%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
         .modal { display: none; position: fixed; z-index: 3000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(5px); }  
         .modal-content { margin: auto; display: block; max-width: 90%; max-height: 80vh; border-radius: 15px; border: 2px solid var(--primary-pink); }  
-        #modal-caption { text-align: center; color: #fff; padding: 20px; font-weight: 600; font-size: 18px; }
 
-        /* ===== CHATBOT BUTTON POSITIONING ===== */
+        /* ===== CHATBOT ===== */
         #chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Poppins', sans-serif; }
         #chat-button {
             width: 55px; height: 55px; background: var(--primary-pink);
@@ -479,80 +470,14 @@
             box-shadow: 0 4px 15px var(--button-shadow-color);
         }
         .see-more-btn:hover { transform: scale(1.05); filter: brightness(1.1); box-shadow: 0 8px 20px var(--hover-glow); }
-
-         @media (max-width: 600px) {
+        @media (max-width: 600px) {
             .nav-container { width: 98%; padding: 0 5px; }
             nav { gap: 4px; padding-bottom: 2px; } 
             nav a { font-size: 10px; padding: 4px 3px; }
             .logo { font-size: 15px; margin-right: 5px; }
             .mode-toggle { width: 28px; height: 28px; font-size: 12px; }
-            .form-row { flex-direction: column; gap: 15px; }
             section { padding: 20px; width: 92%; }
-            .cert-title { font-size: 16px; }
         }
-
-.contact-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 450px;
-    margin: 0 auto;
-}
-
-.contact-card {
-    background: #FCE4EC; 
-    border-radius: 12px;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    text-decoration: none;
-    color: #333;
-    transition: 0.3s ease;
-    border: 1px solid rgba(194, 24, 91, 0.1);
-}
-
-.contact-card:hover {
-    background: #F8BBD0;
-    transform: scale(1.02);
-    border-color: #C2185B;
-}
-
-.contact-card i {
-    font-size: 20px;
-    color: #C2185B; 
-    width: 30px;
-    text-align: center;
-}
-
-.contact-card span {
-    font-size: 14px;
-    font-weight: 500;
-}
-
-/* ADJUSTED: Work With Me Button color to match Download CV */
-.work-with-me-btn {
-    background: var(--primary-pink); /* Same as primary-pink (#ad1457) */
-    color: white;
-    border: none;
-    padding: 14px 45px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 25px;
-    display: inline-block;
-    text-decoration: none;
-    box-shadow: 0 4px 12px var(--button-shadow-color);
-    transition: 0.3s;
-}
-
-.work-with-me-btn:hover {
-    background: #880E4F; 
-    transform: scale(1.05);
-    box-shadow: 0 6px 18px var(--hover-glow);
-}
-
     </style>
 </head>  
 
@@ -579,13 +504,15 @@
 
     <div id="resume-modal">
         <div class="resume-header">
-            <span style="font-weight: 600; font-size: 14px;">Bahi-an_Resume.pdf</span>
+            <span style="font-weight: 600; font-size: 14px;">Lena_Resume.jpg</span>
             <div class="resume-header-actions">
                 <a href="Lan.pdf" download="Bahi-an_Resume.pdf" class="resume-action-btn"><i class="fa-solid fa-download"></i> Download</a>
                 <button onclick="closeResume()" class="resume-action-btn" style="background: #444;"><i class="fa-solid fa-xmark"></i> Close</button>
             </div>
         </div>
-        <iframe id="resume-frame" src=""></iframe>
+        <div class="resume-content-container">
+            <img id="resume-img-display" src="1000120163.jpg" alt="Lena Bahi-an Resume">
+        </div>
     </div>
 
     <div id="chat-widget">
@@ -630,7 +557,6 @@
         <p>I am a dedicated <b>Bachelor of Science in Information Technology</b> student at Central Philippines State University (CPSU). My academic journey is fueled by a deep commitment to mastering the art of digital problem-solving.</p>
         <p>Beyond the classroom, I am an active creator who finds joy in the architecture of code and the aesthetics of graphic design. I pride myself on being highly organized, detail-oriented, and constantly evolving with the latest industry trends—transforming technical challenges into seamless user experiences.</p>  
         <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--primary-pink), transparent); margin: 30px 0;">  
-        
     </section>
 
     <section id="skills">  
@@ -670,34 +596,10 @@
             <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--primary-pink), transparent); margin: 40px 0;">  
             <h2 class="cert-title">Professional Milestones</h2>  
             <div class="project-grid">  
-                <div class="project-item">
-                    <img src="Cg.jpg" style="object-fit:contain;" alt="IT Seminar">
-                    <p>Advanced IT Seminar</p>
-                    <small style="display: block; font-size: 11px; opacity: 0.8; margin-top: 5px; color: var(--text-color);">
-                        Focused on emerging technologies and modern IT infrastructure trends.
-                    </small>
-                </div>  
-                <div class="project-item">
-                    <img src="Cf.jpg" style="object-fit:contain;" alt="Integrative Foundation">
-                    <p>Integrative Tech Foundation</p>
-                    <small style="display: block; font-size: 11px; opacity: 0.8; margin-top: 5px; color: var(--text-color);">
-                        Foundational course covering systems integration and technical workflows.
-                    </small>
-                </div>  
-                <div class="project-item">
-                    <img src="Fc.jpg" style="object-fit:contain;" alt="CISCO Networking">
-                    <p>Cisco Network Solutions</p>
-                    <small style="display: block; font-size: 11px; opacity: 0.8; margin-top: 5px; color: var(--text-color);">
-                        Comprehensive training in network configuration and security protocols.
-                    </small>
-                </div>
-                <div class="project-item">
-                    <img src="lenss.jpeg" style="object-fit:contain;" alt="Digital Safety and Security">
-                    <p>Digital Safety & Security</p>
-                    <small style="display: block; font-size: 11px; opacity: 0.8; margin-top: 5px; color: var(--text-color);">
-                        Credential for mastering digital threat recognition, online privacy, and secure technology use.
-                    </small>
-                </div>
+                <div class="project-item"><img src="Cg.jpg" style="object-fit:contain;" alt="IT Seminar"><p>Advanced IT Seminar</p></div>  
+                <div class="project-item"><img src="Cf.jpg" style="object-fit:contain;" alt="Integrative Tech Foundation"><p>Integrative Tech Foundation</p></div>  
+                <div class="project-item"><img src="Fc.jpg" style="object-fit:contain;" alt="CISCO Networking"><p>Cisco Network Solutions</p></div>
+                <div class="project-item"><img src="lenss.jpeg" style="object-fit:contain;" alt="Digital Safety and Security"><p>Digital Safety & Security</p></div>
             </div>
         </div>
    </section>
@@ -712,62 +614,29 @@
     </section>
 
     <section id="contact-section">
-    <h2>Contact Me</h2>
-    <div class="contact-container">
-        <a href="mailto:lenabahian@gmail.com" class="contact-card">
-            <i class="fa-solid fa-envelope"></i>
-            <span>lenabahian@gmail.com</span>
-        </a>
-
-        <a href="https://github.com/lenabahian-commits" target="_blank" class="contact-card">
-            <i class="fa-brands fa-github"></i>
-            <span>github.com/lenabahian-commits</span>
-        </a>
-
-        <a href="https://www.facebook.com/lens.bahian" target="_blank" class="contact-card">
-            <i class="fa-brands fa-facebook"></i>
-            <span>Lens Catacio Bahian</span>
-        </a>
-
-        <a href="tel:+639923134253" class="contact-card">
-            <i class="fa-solid fa-phone"></i>
-            <span>+63 992 313 4253</span>
-        </a>
-
-        <div style="text-align: center;">
-            <a href="mailto:lenabahian@gmail.com" class="work-with-me-btn">Work With Me</a>
+        <h2>Contact Me</h2>
+        <div class="contact-container">
+            <a href="mailto:lenabahian@gmail.com" class="contact-card"><i class="fa-solid fa-envelope"></i><span>lenabahian@gmail.com</span></a>
+            <a href="https://github.com/lenabahian-commits" target="_blank" class="contact-card"><i class="fa-brands fa-github"></i><span>github.com/lenabahian-commits</span></a>
+            <a href="https://www.facebook.com/lens.bahian" target="_blank" class="contact-card"><i class="fa-brands fa-facebook"></i><span>Lens Catacio Bahian</span></a>
+            <a href="tel:+639923134253" class="contact-card"><i class="fa-solid fa-phone"></i><span>+63 992 313 4253</span></a>
+            <div style="text-align: center;"><a href="mailto:lenabahian@gmail.com" class="work-with-me-btn">Work With Me</a></div>
         </div>
-    </div>
-</section>
+    </section>
 
     <footer>
         <p style="font-size: 11px; letter-spacing: 0.5px; margin: 0 0 20px 0; opacity: 0.9; text-transform: uppercase;">
             © 2026 <b>Lena Bahi-an</b> | Engineered for Excellence | BSIT-2B
         </p>
-        <div style="display: flex; justify-content: center; gap: 15px;">
-            <a href="https://facebook.com/lens.bahian" target="_blank" style="color: #fff; text-decoration: none; font-size: 18px;">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="#" style="color: #fff; text-decoration: none; font-size: 18px;">
-                <i class="fa-brands fa-twitter"></i>
-            </a>
-            <a href="#" style="color: #fff; text-decoration: none; font-size: 18px;">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://github.com/lenabahian-commits" target="_blank" style="color: #fff; text-decoration: none; font-size: 18px;">
-                <i class="fa-brands fa-github"></i>
-            </a>
-        </div>
     </footer>
 
     <div id="imageModal" class="modal" onclick="this.style.display='none'"><img class="modal-content" id="imgFull"><div id="modal-caption"></div></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <script>  
+        // CORRECTED FUNCTION: Shows Resume Modal with Picture
         function openResume() {
             const modal = document.getElementById('resume-modal');
-            const frame = document.getElementById('resume-frame');
-            frame.src = 'Lan.pdf'; 
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden'; 
         }
@@ -830,6 +699,7 @@
             if(event) event.target.classList.add('active');
             filterItems.forEach(item => { item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none'; });
         }
+        
         const projectImages = document.querySelectorAll('.project-item img');  
         const modal = document.getElementById("imageModal");  
         const modalImg = document.getElementById("imgFull");  
@@ -870,29 +740,12 @@
             setTimeout(() => {
                 let response = "I'm sorry, I didn't quite catch that. You can reach Lena directly at lenabahian@gmail.com for more details!";
                 const lowerText = text.toLowerCase();
-                
-                if (lowerText.includes("hello") || lowerText.includes("hi")) {
-                    response = "Greetings! I'm here to help. You can ask about Lena's 'skills', 'education', 'projects', or how to 'contact' her.";
-                } else if (lowerText.includes("skills") || lowerText.includes("marunong")) {
-                    response = "Lena is skilled in Front-end Development (HTML, CSS, JavaScript) and UI/UX Design using Figma, Canva, and Adobe Photoshop/Premiere.";
-                } else if (lowerText.includes("education") || lowerText.includes("school") || lowerText.includes("nag-aaral")) {
-                    response = "Lena is currently a BSIT student at Central Philippines State University (CPSU) - Moises Padilla Campus.";
-                } else if (lowerText.includes("projects") || lowerText.includes("gawa") || lowerText.includes("work")) {
-                    response = "Lena has worked on personal portfolios, food application concepts (Fresh Bites Kitchen), and various graphic designs like banners and merchandise.";
-                } else if (lowerText.includes("contact") || lowerText.includes("email") || lowerText.includes("number")) {
-                    response = "You can email her at lenabahian@gmail.com or call/text at +63 992 313 4253. Check the Contact section for her Facebook link!";
-                } else if (lowerText.includes("figma") || lowerText.includes("design")) {
-                    response = "Yes! Lena uses Figma for UI/UX prototypes. You can see her live Figma links in the 'Work' section.";
-                } else if (lowerText.includes("github") || lowerText.includes("code")) {
-                    response = "You can find her coding commits at github.com/lenabahian-commits.";
-                } else if (lowerText.includes("fresh bites") || lowerText.includes("food app")) {
-                    response = "Fresh Bites Kitchen is one of Lena's projects—a food pickup application with a login system and QR payment concepts.";
-                } else if (lowerText.includes("cv") || lowerText.includes("resume")) {
-                    response = "You can view and download her full CV by clicking the 'Download CV' button in the Home or About section.";
-                } else if (lowerText.includes("who are you") || lowerText.includes("sino ka")) {
-                    response = "I am Lena's Virtual Assistant, designed to help you navigate her portfolio and answer common questions about her professional background.";
-                }
-                
+                if (lowerText.includes("hello") || lowerText.includes("hi")) { response = "Greetings! I'm here to help. You can ask about Lena's 'skills', 'education', 'projects', or how to 'contact' her."; } 
+                else if (lowerText.includes("skills")) { response = "Lena is skilled in Front-end Development and UI/UX Design using Figma, Canva, and Adobe Photoshop/Premiere."; } 
+                else if (lowerText.includes("education")) { response = "Lena is currently a BSIT student at Central Philippines State University (CPSU) - Moises Padilla Campus."; } 
+                else if (lowerText.includes("projects")) { response = "Lena has worked on personal portfolios, food applications (Fresh Bites Kitchen), and various graphic designs."; } 
+                else if (lowerText.includes("contact")) { response = "You can email her at lenabahian@gmail.com or call/text at +63 992 313 4253."; } 
+                else if (lowerText.includes("cv") || lowerText.includes("resume")) { response = "You can view and download her full CV by clicking the 'Download CV' button!"; }
                 addMessage(response, 'bot');
             }, 600);
         }
@@ -901,3 +754,4 @@
     </script>
 </body>  
 </html>
+         
