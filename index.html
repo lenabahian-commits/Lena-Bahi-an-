@@ -783,37 +783,7 @@
         
         }
 
-        function initTechNodes() {
-            const container = document.getElementById('nodes-container');
-            for (let i = 0; i < 35; i++) {
-                const node = document.createElement('div');
-                node.className = 'node';
-                node.style.left = Math.random() * 100 + 'vw';
-                node.style.animationDuration = (Math.random() * 10 + 5) + 's';
-                node.style.animationDelay = (Math.random() * 8) + 's';
-                container.appendChild(node);
-            }
-        }
-        initTechNodes();
-
-        const modeBtn = document.getElementById('modeBtn');
-        modeBtn.onclick = () => {
-            document.body.classList.toggle('dark-mode');
-            modeBtn.innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-        };
-
-        const cursor = document.querySelector('.cursor-dot');
-        document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
-
-        const textElement = document.getElementById('typewriter');
-        const words = ["Welcome to my Portfolio.", "Designing Experiences.", "Solving Problems."];
-        let wordIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 150;
-
-        function type() {
-            const currentWord = words[wordIndex];
-            if (isDeleting) {
-                textElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndefunction openResume() {
+        function openResume() {
     const modal = document.getElementById('resume-modal');
     const frame = document.getElementById('resume-frame');
     
@@ -833,6 +803,8 @@ function closeResume() {
     
     // I-clear ang src para tumigil ang loading sa background
     frame.src = ''; 
+        }
+
 }
                 x--;
                 typeSpeed = 100;
