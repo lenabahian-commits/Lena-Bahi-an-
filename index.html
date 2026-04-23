@@ -276,17 +276,16 @@
 .work-with-me-btn {
     background: #b01e51;
     color: white;
-    padding: 8px 0;      
-    width: 85%;          
+    padding: 8px 0;      /* Slim vertical padding */
+    width: 85%;          /* Sakto ang haba para sa layout */
     border-radius: 12px;
     font-size: 13px;
     font-weight: 600;
-    text-decoration: none; 
+    text-decoration: none; /* Tinatanggal ang underline */
     display: inline-block;
     text-transform: uppercase;
     transition: 0.3s;
     box-shadow: 0 3px 10px rgba(176, 30, 81, 0.15);
-    /* DITO ANG BINAGO: Dinagdagan ang gap sa taas para bumaba ang button */
     margin-top: 15px; 
 }
 
@@ -297,13 +296,13 @@
 }
 .work-btn {
     display: block;
-    margin: 25px auto 0; 
+    margin: 25px auto 0; /* 25px ang agwat sa taas, auto para center */
     padding: 12px 30px;
     background-color: #A61D4C;
     color: white;
     border: none;
     border-radius: 8px;
-    width: 80%; 
+    width: 80%; /* base sa picture mo */
     font-weight: bold;
 }
 
@@ -372,8 +371,37 @@
         .output-list a { color: var(--primary-pink); text-decoration: none; font-weight: bold; border-bottom: 2px solid transparent; transition: 0.3s ease; display: inline-block; padding: 5px 0; }
         .output-list a:hover { border-bottom: 2px solid var(--primary-pink); transform: translateX(8px); }
 
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 25px; }
-        .video-wrapper { text-align: center; transition: 0.3s; }
+        /* ===== UPDATED VIDEO GRID STYLE ===== */
+        .video-grid { 
+            display: flex; /* Flex gamit natin imbes na Grid */
+            justify-content: center; /* Center ang mga items */
+            gap: 25px; /* Spacing sa pagitan ng mga items */
+            margin-top: 25px; 
+            flex-wrap: wrap; /* Papayagan natin mag-wrap kung maliit na ang screen */
+        }
+        
+        .video-wrapper { 
+            text-align: center; 
+            transition: 0.3s; 
+            flex: 0 0 calc(33.333% - 17px); /* I-calc natin ang width para pantay-pantay na 3 sa isang linya */
+            max-width: calc(33.333% - 17px);
+            min-width: 250px; /* Minimum width para 'di masyadong maliit sa phone */
+        }
+        
+        @media (max-width: 768px) { /* Sa phone at tablet, papalitan natin */
+            .video-wrapper {
+                flex: 0 0 calc(50% - 13px); /* 2 sa isang linya */
+                max-width: calc(50% - 13px);
+            }
+        }
+        
+        @media (max-width: 500px) { /* Sa maliliit na phone */
+            .video-wrapper {
+                flex: 0 0 100%; /* 1 sa isang linya */
+                max-width: 100%;
+            }
+        }
+
         .video-item { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 3px solid transparent; transition: 0.3s; }
         .video-item iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         .video-wrapper:hover { transform: scale(1.03); }
@@ -427,6 +455,7 @@
         }
         .resume-action-btn:hover { background: #880e4f; }
         
+        /* ADJUSTED: Container for the Resume Image */
         .resume-content-container {
             flex: 1;
             width: 100%;
@@ -817,7 +846,7 @@
         document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
 
         const textElement = document.getElementById('typewriter');
-        const words = ["Welcome to my Portfolio."];
+        const words = ["Welcome to my Portfolio.", "Designing Experiences.", "Solving Problems."];
         let wordIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 150;
 
         function type() {
