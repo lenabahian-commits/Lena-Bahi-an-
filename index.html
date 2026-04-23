@@ -276,16 +276,18 @@
 .work-with-me-btn {
     background: #b01e51;
     color: white;
-    padding: 8px 0;      /* Slim vertical padding */
-    width: 85%;          /* Sakto ang haba para sa layout */
+    padding: 8px 0;      
+    width: 85%;          
     border-radius: 12px;
     font-size: 13px;
     font-weight: 600;
-    text-decoration: none; /* Tinatanggal ang underline */
+    text-decoration: none; 
     display: inline-block;
     text-transform: uppercase;
     transition: 0.3s;
     box-shadow: 0 3px 10px rgba(176, 30, 81, 0.15);
+    /* DITO ANG BINAGO: Dinagdagan ang gap sa taas para bumaba ang button */
+    margin-top: 15px; 
 }
 
 .work-with-me-btn:hover {
@@ -293,8 +295,17 @@
     transform: translateY(-2px);
     box-shadow: 0 5px 12px rgba(176, 30, 81, 0.25);
 }
-
-        }
+.work-btn {
+    display: block;
+    margin: 25px auto 0; 
+    padding: 12px 30px;
+    background-color: #A61D4C;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 80%; 
+    font-weight: bold;
+}
 
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -416,7 +427,6 @@
         }
         .resume-action-btn:hover { background: #880e4f; }
         
-        /* ADJUSTED: Container for the Resume Image */
         .resume-content-container {
             flex: 1;
             width: 100%;
@@ -494,20 +504,19 @@
             .mode-toggle { width: 28px; height: 28px; font-size: 12px; }
             section { padding: 20px; width: 92%; }
         }
-        /* Card Container */
+        
 .project-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px; /* Saktong space sa loob */
-    background: #fceef5; /* Light Pink background base sa picture */
+    padding: 15px; 
+    background: #fceef5; 
     border-radius: 20px;
     margin-bottom: 20px;
     transition: 0.3s ease;
     border: none;
 }
 
-/* Image Adjustment */
 .project-item img {
     width: 100%;
     border-radius: 12px;
@@ -515,18 +524,16 @@
     object-fit: contain;
 }
 
-/* Title - Ginawang mas maliit */
 .cert-title-text {
     color: #b01e51;
     font-weight: 700;
-    font-size: 13px; /* Maliit na title */
+    font-size: 13px; 
     margin: 5px 0 3px 0;
     text-align: center;
 }
 
-/* Description - Extra Small */
 .cert-desc {
-    font-size: 10px; /* Small description sub-text */
+    font-size: 10px; 
     color: #555;
     line-height: 1.4;
     text-align: center;
@@ -534,7 +541,6 @@
     font-weight: 400;
 }
 
-/* Hover effect para maging interactive */
 .project-item:hover {
     transform: translateY(-3px);
     background: #f9e2ef;
@@ -649,9 +655,15 @@
             <button class="filter-btn" onclick="filterProjects('links')">Live Links</button>
         </div>
         <div class="project-grid filter-item graphics">  
-            <div class="project-item"><img src="Ss.jpg" alt="Banner"><p>Marketing Banner</p></div>  
-            <div class="project-item"><img src="Ts.png" alt="T-Shirt Layout"><p>Merchandise Design</p></div>  
-            <div class="project-item"><img src="Sh.png" alt="Chessboard"><p>Vector Graphics</p></div>  
+    <div class="project-item"><img src="Ss.jpg" alt="Banner"><p>Marketing Banner</p></div>  
+    <div class="project-item"><img src="Ts.png" alt="T-Shirt Layout"><p>Merchandise Design</p></div>  
+    <div class="project-item"><img src="Sh.png" alt="Chessboard"><p>Vector Graphics</p></div>  
+    
+    <div class="project-item">
+        <img src="Bn.jpeg" alt="Graham Bites Advertisement Design">
+        <p>Graham Bites Advertisement Design</p>
+    </div>
+</div>
         </div>  
        
         <div class="other-outputs">
@@ -696,13 +708,34 @@
    </section>
 
     <section id="Tutorials">
-        <h2>Expertise Tutorials</h2>
-        <div class="video-grid">
-            <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/jQ1sfKIl50E"></iframe></div><p>Figma Mastery</p></div>
-            <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/jzWxBuvwuwQ"></iframe></div><p>Canva Pro Tips</p></div>
-            <div class="video-wrapper"><div class="video-item"><iframe src="https://www.youtube.com/embed/qwNbjGyhZ48"></iframe></div><p>Advanced Photoshop</p></div>
+    <h2>Expertise Tutorials</h2>
+    <div class="video-grid">
+        <div class="video-wrapper">
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/jQ1sfKIl50E" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p>Figma Mastery</p>
         </div>
-    </section>
+        <div class="video-wrapper">
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/jzWxBuvwuwQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p>Canva Pro Tips</p>
+        </div>
+        <div class="video-wrapper">
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/qwNbjGyhZ48" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p>Advanced Adobe Photoshop</p>
+        </div>
+        <div class="video-wrapper">
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/oUlpbue-Gw0" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p>Advanced Adobe Premier</p>
+        </div>
+    </div>
+</section>
 
     <section id="contact-section">
         <div class="contact-card-container">
@@ -749,7 +782,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <script>  
-        // CORRECTED FUNCTION: Shows Resume Modal with Picture
         function openResume() {
             const modal = document.getElementById('resume-modal');
             modal.style.display = 'flex';
@@ -785,7 +817,7 @@
         document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
 
         const textElement = document.getElementById('typewriter');
-        const words = ["Welcome to my Portfolio.", "Designing Experiences.", "Solving Problems."];
+        const words = ["Welcome to my Portfolio."];
         let wordIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 150;
 
         function type() {
